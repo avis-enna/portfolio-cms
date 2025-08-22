@@ -8,10 +8,16 @@ export interface AuthResult {
 }
 
 /**
- * Protected route patterns
+ * Protected API route patterns (require authentication with 401 response)
  */
-const PROTECTED_ROUTES = [
+const PROTECTED_API_ROUTES = [
   '/api/admin',
+]
+
+/**
+ * Protected page route patterns (client-side routes that need auth but should load)
+ */
+const PROTECTED_PAGE_ROUTES = [
   '/admin',
 ]
 
@@ -29,10 +35,17 @@ const PUBLIC_ROUTES = [
 ]
 
 /**
- * Check if a route requires authentication
+ * Check if a route is a protected API route (requires auth with 401 response)
  */
-function isProtectedRoute(pathname: string): boolean {
-  return PROTECTED_ROUTES.some(route => pathname.startsWith(route))
+function isProtectedApiRoute(pathname: string): boolean {
+  return PROTECTED_API_ROUTES.some(route => pathname.startsWith(route))
+}
+
+/**
+ * Check if a route is a protected page route (client-side route that needs auth)
+ */
+function isProtectedPageRoute(pathname: string): boolean {
+  return PROTECTED_PAGE_ROUTES.some(route => pathname.startsWith(route))
 }
 
 /**
@@ -49,14 +62,14 @@ export async function authMiddleware(request: NextRequest): Promise<NextResponse
   const { pathname } = request.nextUrl
 
   // Allow public routes
-  if (isPublicRoute(pathname) && !isProtectedRoute(pathname)) {
+  if (isPublicRoute(pathname) && !isProtectedApiRoute(pathname) && !isProtectedPageRoute(pathname)) {
     return NextResponse.next()
   }
 
-  // Check if route requires authentication
-  if (isProtectedRoute(pathname)) {
+  // Handle protected API routes (require auth with 401 response)
+  if (isProtectedApiRoute(pathname)) {
     const authResult = await requireAuth(request)
-    
+
     if (!authResult.success) {
       return NextResponse.json(
         { error: authResult.error || 'Authentication required' },
@@ -71,8 +84,14 @@ export async function authMiddleware(request: NextRequest): Promise<NextResponse
     if (authResult.user!.email) {
       response.headers.set('x-user-email', authResult.user!.email)
     }
-    
+
     return response
+  }
+
+  // Handle protected page routes (client-side routes - allow to load, let React handle auth)
+  if (isProtectedPageRoute(pathname)) {
+    // Allow the page to load - authentication will be handled client-side
+    return NextResponse.next()
   }
 
   // Default: allow the request
