@@ -1,7 +1,9 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import AdminLayout from '../components/AdminLayout'
+import { useToast } from '@/components/Toast'
 
 interface ContactSubmission {
   id: string
@@ -17,42 +19,50 @@ export default function ContactManagement() {
   const [isLoading, setIsLoading] = useState(true)
   const [selectedContact, setSelectedContact] = useState<ContactSubmission | null>(null)
   const [filter, setFilter] = useState<'all' | 'new' | 'read' | 'replied'>('all')
+  const router = useRouter()
+  const { success, error } = useToast()
 
   useEffect(() => {
     loadContacts()
+  }, [filter])
+
+  useEffect(() => {
+    // Check authentication on mount
+    const accessToken = localStorage.getItem('accessToken')
+    if (!accessToken) {
+      router.push('/admin/login')
+    }
   }, [])
 
   const loadContacts = async () => {
     try {
-      // Mock data for now - replace with actual API call
-      setContacts([
-        {
-          id: '1',
-          name: 'John Doe',
-          email: 'john@example.com',
-          message: 'Hi, I\'m interested in collaborating on a project. Could we schedule a call to discuss?',
-          status: 'new',
-          createdAt: '2024-01-15T10:00:00Z'
+      const accessToken = localStorage.getItem('accessToken')
+      if (!accessToken) {
+        router.push('/admin/login')
+        return
+      }
+
+      const response = await fetch(`/api/admin/contacts?filter=${filter}`, {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
         },
-        {
-          id: '2',
-          name: 'Sarah Smith',
-          email: 'sarah@company.com',
-          message: 'We have a job opportunity that might interest you. Please check your email for details.',
-          status: 'read',
-          createdAt: '2024-01-14T15:30:00Z'
-        },
-        {
-          id: '3',
-          name: 'Mike Johnson',
-          email: 'mike@startup.io',
-          message: 'Love your portfolio! Would you be interested in joining our team as a senior developer?',
-          status: 'replied',
-          createdAt: '2024-01-13T09:15:00Z'
+      })
+
+      if (response.ok) {
+        const data = await response.json()
+        if (data.success) {
+          setContacts(data.data.contacts)
+        } else {
+          error('Failed to load contacts', data.error)
         }
-      ])
-    } catch (error) {
-      console.error('Error loading contacts:', error)
+      } else if (response.status === 401) {
+        router.push('/admin/login')
+      } else {
+        error('Failed to load contacts', 'Server error occurred')
+      }
+    } catch (err) {
+      console.error('Error loading contacts:', err)
+      error('Failed to load contacts', 'Network error occurred')
     } finally {
       setIsLoading(false)
     }
@@ -83,10 +93,46 @@ export default function ContactManagement() {
     }
   }
 
-  const updateStatus = (contactId: string, newStatus: ContactSubmission['status']) => {
-    setContacts(prev => prev.map(contact => 
-      contact.id === contactId ? { ...contact, status: newStatus } : contact
-    ))
+  const updateStatus = async (contactId: string, newStatus: ContactSubmission['status']) => {
+    try {
+      const accessToken = localStorage.getItem('accessToken')
+      if (!accessToken) {
+        router.push('/admin/login')
+        return
+      }
+
+      const response = await fetch('/api/admin/contacts', {
+        method: 'PATCH',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contactId,
+          status: newStatus
+        })
+      })
+
+      if (response.ok) {
+        const data = await response.json()
+        if (data.success) {
+          // Update local state
+          setContacts(prev => prev.map(contact =>
+            contact.id === contactId ? { ...contact, status: newStatus } : contact
+          ))
+          success('Contact status updated successfully')
+        } else {
+          error('Failed to update contact status', data.error)
+        }
+      } else if (response.status === 401) {
+        router.push('/admin/login')
+      } else {
+        error('Failed to update contact status', 'Server error occurred')
+      }
+    } catch (err) {
+      console.error('Error updating contact status:', err)
+      error('Failed to update contact status', 'Network error occurred')
+    }
   }
 
   const filteredContacts = contacts.filter(contact => 
@@ -122,6 +168,7 @@ export default function ContactManagement() {
           {(['all', 'new', 'read', 'replied'] as const).map((status) => (
             <button
               key={status}
+              type="button"
               onClick={() => setFilter(status)}
               className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
                 filter === status
@@ -162,6 +209,7 @@ export default function ContactManagement() {
                       <div className="flex space-x-1">
                         {contact.status === 'new' && (
                           <button
+                            type="button"
                             onClick={(e) => {
                               e.stopPropagation()
                               updateStatus(contact.id, 'read')
@@ -173,6 +221,7 @@ export default function ContactManagement() {
                         )}
                         {contact.status !== 'replied' && (
                           <button
+                            type="button"
                             onClick={(e) => {
                               e.stopPropagation()
                               updateStatus(contact.id, 'replied')
@@ -217,8 +266,10 @@ export default function ContactManagement() {
                       {selectedContact.status}
                     </span>
                     <button
+                      type="button"
                       onClick={() => setSelectedContact(null)}
                       className="text-gray-400 hover:text-gray-600"
+                      aria-label="Close contact details"
                     >
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -236,6 +287,7 @@ export default function ContactManagement() {
 
                 <div className="flex justify-end space-x-3">
                   <button
+                    type="button"
                     onClick={() => {
                       window.location.href = `mailto:${selectedContact.email}?subject=Re: Your message&body=Hi ${selectedContact.name},%0D%0A%0D%0AThank you for your message.%0D%0A%0D%0ABest regards`
                     }}
@@ -245,6 +297,7 @@ export default function ContactManagement() {
                   </button>
                   {selectedContact.status !== 'replied' && (
                     <button
+                      type="button"
                       onClick={() => {
                         updateStatus(selectedContact.id, 'replied')
                         setSelectedContact(null)
