@@ -117,7 +117,7 @@ export function decodeToken(token: string): TokenPayload | null {
 }
 
 /**
- * Validate token payload structure
+ * Validate token payload structure with enhanced security checks
  */
 function validateTokenPayload(payload: any): asserts payload is TokenPayload {
   if (!payload.userId) {
@@ -138,6 +138,55 @@ function validateTokenPayload(payload: any): asserts payload is TokenPayload {
 
   if (payload.email && typeof payload.email !== 'string') {
     throw new Error('email must be a string')
+  }
+
+  // Enhanced security validations
+
+  // Validate userId format (should be a valid ObjectId)
+  if (!/^[0-9a-fA-F]{24}$/.test(payload.userId)) {
+    throw new Error('Invalid userId format')
+  }
+
+  // Validate username format (alphanumeric, underscore, hyphen, 3-30 chars)
+  if (!/^[a-zA-Z0-9_-]{3,30}$/.test(payload.username)) {
+    throw new Error('Invalid username format')
+  }
+
+  // Validate email format if provided
+  if (payload.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) {
+    throw new Error('Invalid email format')
+  }
+
+  // Security: Check for injection attempts
+  const dangerousPatterns = [
+    /[<>'"]/,  // HTML/JS injection
+    /[;\\]/,   // SQL injection
+    /\x00/,    // Null bytes
+    /\r|\n/,   // Line breaks
+  ]
+
+  const fieldsToCheck = [payload.userId, payload.username, payload.email].filter(Boolean)
+
+  for (const field of fieldsToCheck) {
+    for (const pattern of dangerousPatterns) {
+      if (pattern.test(field)) {
+        throw new Error('Invalid characters detected in token payload')
+      }
+    }
+  }
+
+  // Check payload size to prevent DoS
+  const payloadSize = JSON.stringify(payload).length
+  if (payloadSize > 1024) { // 1KB limit
+    throw new Error('Token payload too large')
+  }
+
+  // Remove any extra properties for security
+  const allowedKeys = ['userId', 'username', 'email', 'iat', 'exp']
+  for (const key in payload) {
+    if (!allowedKeys.includes(key)) {
+      delete payload[key]
+    }
   }
 }
 
