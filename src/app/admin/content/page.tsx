@@ -427,8 +427,9 @@ export default function ContentManagement() {
           <h2 className="text-lg font-medium text-white mb-4">Personal Information</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">Name</label>
+              <label htmlFor="personal-name" className="block text-sm font-medium text-gray-300 mb-1">Name</label>
               <input
+                id="personal-name"
                 type="text"
                 value={content.personalInfo.name}
                 onChange={(e) => handlePersonalInfoChange('name', e.target.value)}
@@ -437,8 +438,9 @@ export default function ContentManagement() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">Title</label>
+              <label htmlFor="personal-title" className="block text-sm font-medium text-gray-300 mb-1">Title</label>
               <input
+                id="personal-title"
                 type="text"
                 value={content.personalInfo.title}
                 onChange={(e) => handlePersonalInfoChange('title', e.target.value)}
@@ -447,8 +449,9 @@ export default function ContentManagement() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">Email</label>
+              <label htmlFor="personal-email" className="block text-sm font-medium text-gray-300 mb-1">Email</label>
               <input
+                id="personal-email"
                 type="email"
                 value={content.personalInfo.email}
                 onChange={(e) => handlePersonalInfoChange('email', e.target.value)}
@@ -457,8 +460,9 @@ export default function ContentManagement() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">Phone</label>
+              <label htmlFor="personal-phone" className="block text-sm font-medium text-gray-300 mb-1">Phone</label>
               <input
+                id="personal-phone"
                 type="text"
                 value={content.personalInfo.phone}
                 onChange={(e) => handlePersonalInfoChange('phone', e.target.value)}
@@ -467,8 +471,9 @@ export default function ContentManagement() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
+              <label htmlFor="personal-location" className="block text-sm font-medium text-gray-700 mb-1">Location</label>
               <input
+                id="personal-location"
                 type="text"
                 value={content.personalInfo.location}
                 onChange={(e) => handlePersonalInfoChange('location', e.target.value)}
@@ -477,8 +482,9 @@ export default function ContentManagement() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Profile Image URL</label>
+              <label htmlFor="personal-profile-image" className="block text-sm font-medium text-gray-700 mb-1">Profile Image URL</label>
               <input
+                id="personal-profile-image"
                 type="url"
                 value={content.personalInfo.profileImage}
                 onChange={(e) => handlePersonalInfoChange('profileImage', e.target.value)}
@@ -487,8 +493,9 @@ export default function ContentManagement() {
               />
             </div>
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Bio</label>
+              <label htmlFor="personal-bio" className="block text-sm font-medium text-gray-700 mb-1">Bio</label>
               <textarea
+                id="personal-bio"
                 rows={4}
                 value={content.personalInfo.bio}
                 onChange={(e) => handlePersonalInfoChange('bio', e.target.value)}
@@ -568,8 +575,9 @@ export default function ContentManagement() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Company</label>
+                    <label htmlFor={`exp-company-${index}`} className="block text-sm font-medium text-gray-700 mb-1">Company</label>
                     <input
+                      id={`exp-company-${index}`}
                       type="text"
                       value={exp.company}
                       onChange={(e) => updateExperience(index, 'company', e.target.value)}
@@ -578,8 +586,9 @@ export default function ContentManagement() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Position</label>
+                    <label htmlFor={`exp-position-${index}`} className="block text-sm font-medium text-gray-700 mb-1">Position</label>
                     <input
+                      id={`exp-position-${index}`}
                       type="text"
                       value={exp.position}
                       onChange={(e) => updateExperience(index, 'position', e.target.value)}
@@ -588,8 +597,9 @@ export default function ContentManagement() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
+                    <label htmlFor={`exp-start-date-${index}`} className="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
                     <input
+                      id={`exp-start-date-${index}`}
                       type="date"
                       value={exp.startDate}
                       onChange={(e) => updateExperience(index, 'startDate', e.target.value)}
@@ -597,8 +607,9 @@ export default function ContentManagement() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">End Date</label>
+                    <label htmlFor={`exp-end-date-${index}`} className="block text-sm font-medium text-gray-700 mb-1">End Date</label>
                     <input
+                      id={`exp-end-date-${index}`}
                       type="date"
                       value={exp.endDate}
                       onChange={(e) => updateExperience(index, 'endDate', e.target.value)}
@@ -606,8 +617,9 @@ export default function ContentManagement() {
                     />
                   </div>
                   <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                    <label htmlFor={`exp-description-${index}`} className="block text-sm font-medium text-gray-700 mb-1">Description</label>
                     <textarea
+                      id={`exp-description-${index}`}
                       rows={3}
                       value={exp.description}
                       onChange={(e) => updateExperience(index, 'description', e.target.value)}
@@ -673,8 +685,9 @@ export default function ContentManagement() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
+                    <label htmlFor={`edu-start-date-${index}`} className="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
                     <input
+                      id={`edu-start-date-${index}`}
                       type="date"
                       value={edu.startDate}
                       onChange={(e) => updateEducation(index, 'startDate', e.target.value)}
@@ -682,8 +695,9 @@ export default function ContentManagement() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">End Date</label>
+                    <label htmlFor={`edu-end-date-${index}`} className="block text-sm font-medium text-gray-700 mb-1">End Date</label>
                     <input
+                      id={`edu-end-date-${index}`}
                       type="date"
                       value={edu.endDate}
                       onChange={(e) => updateEducation(index, 'endDate', e.target.value)}
@@ -799,8 +813,9 @@ export default function ContentManagement() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                    <label htmlFor={`project-status-${index}`} className="block text-sm font-medium text-gray-700 mb-1">Status</label>
                     <select
+                      id={`project-status-${index}`}
                       value={project.status}
                       onChange={(e) => updateProject(index, 'status', e.target.value)}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -912,8 +927,9 @@ export default function ContentManagement() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Issue Date</label>
+                    <label htmlFor={`cert-issue-date-${index}`} className="block text-sm font-medium text-gray-700 mb-1">Issue Date</label>
                     <input
+                      id={`cert-issue-date-${index}`}
                       type="date"
                       value={cert.issueDate}
                       onChange={(e) => updateCertification(index, 'issueDate', e.target.value)}
@@ -921,8 +937,9 @@ export default function ContentManagement() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Expiry Date (Optional)</label>
+                    <label htmlFor={`cert-expiry-date-${index}`} className="block text-sm font-medium text-gray-700 mb-1">Expiry Date (Optional)</label>
                     <input
+                      id={`cert-expiry-date-${index}`}
                       type="date"
                       value={cert.expiryDate || ''}
                       onChange={(e) => updateCertification(index, 'expiryDate', e.target.value)}

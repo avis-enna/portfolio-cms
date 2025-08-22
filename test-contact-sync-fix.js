@@ -71,11 +71,17 @@ class ContactSyncTester {
       // Count contact rows (excluding header)
       const contactRows = await this.page.locator('tbody tr').count();
       console.log(`📋 Contact management shows: ${contactRows} contacts`);
-      
-      // Count unread contacts (those with "new" status)
-      const newStatusBadges = await this.page.locator('.bg-blue-100').count();
-      console.log(`📬 Unread contacts: ${newStatusBadges}`);
-      
+
+      // Count unread contacts more specifically
+      const newStatusBadges = await this.page.locator('.bg-blue-100:has-text("new")').count();
+      const allBlueBadges = await this.page.locator('.bg-blue-100').count();
+      console.log(`📬 Unread contacts (new badges): ${newStatusBadges}`);
+      console.log(`📬 All blue badges: ${allBlueBadges}`);
+
+      // Check what the blue badges actually contain
+      const blueBadgeTexts = await this.page.locator('.bg-blue-100').allTextContents();
+      console.log(`📬 Blue badge texts: ${JSON.stringify(blueBadgeTexts)}`);
+
       return { totalContacts: contactRows, unreadContacts: newStatusBadges };
     } catch (error) {
       console.error('❌ Error reading contact management data:', error);
