@@ -1,0 +1,292 @@
+{
+  "timestamp": "2025-08-22T09:21:38.345Z",
+  "branch": "feature/enhanced-ui-improvements",
+  "testSummary": {
+    "totalBugsFound": 17,
+    "highSeverityBugs": 12,
+    "mediumSeverityBugs": 5,
+    "lowSeverityBugs": 0,
+    "consoleErrors": 11,
+    "networkErrors": 5,
+    "screenshotsCaptured": 14
+  },
+  "bugs": [
+    {
+      "type": "CONTACT_COUNT_BUG",
+      "severity": "HIGH",
+      "description": "Contact count shows 0 unread but may have unread contacts",
+      "location": "Dashboard Contact Statistics",
+      "screenshot": null,
+      "timestamp": "2025-08-22T09:21:17.850Z"
+    },
+    {
+      "type": "MISSING_VALIDATION",
+      "severity": "MEDIUM",
+      "description": "No validation messages shown for empty form submission",
+      "location": "Form Validation",
+      "screenshot": null,
+      "timestamp": "2025-08-22T09:21:24.001Z"
+    },
+    {
+      "type": "EMAIL_VALIDATION_MISSING",
+      "severity": "MEDIUM",
+      "description": "No validation for invalid email format",
+      "location": "Email Validation",
+      "screenshot": null,
+      "timestamp": "2025-08-22T09:21:29.476Z"
+    },
+    {
+      "type": "NAVIGATION_404",
+      "severity": "HIGH",
+      "description": "Dashboard page returns 404",
+      "location": "Navigation",
+      "screenshot": null,
+      "timestamp": "2025-08-22T09:21:29.704Z"
+    },
+    {
+      "type": "PAGE_ERROR",
+      "severity": "HIGH",
+      "description": "Dashboard page shows error content",
+      "location": "Page Loading",
+      "screenshot": null,
+      "timestamp": "2025-08-22T09:21:29.704Z"
+    },
+    {
+      "type": "NAVIGATION_404",
+      "severity": "HIGH",
+      "description": "Content page returns 404",
+      "location": "Navigation",
+      "screenshot": null,
+      "timestamp": "2025-08-22T09:21:29.803Z"
+    },
+    {
+      "type": "PAGE_ERROR",
+      "severity": "HIGH",
+      "description": "Content page shows error content",
+      "location": "Page Loading",
+      "screenshot": null,
+      "timestamp": "2025-08-22T09:21:29.803Z"
+    },
+    {
+      "type": "NAVIGATION_404",
+      "severity": "HIGH",
+      "description": "Blog page returns 404",
+      "location": "Navigation",
+      "screenshot": null,
+      "timestamp": "2025-08-22T09:21:29.889Z"
+    },
+    {
+      "type": "PAGE_ERROR",
+      "severity": "HIGH",
+      "description": "Blog page shows error content",
+      "location": "Page Loading",
+      "screenshot": null,
+      "timestamp": "2025-08-22T09:21:29.890Z"
+    },
+    {
+      "type": "NAVIGATION_404",
+      "severity": "HIGH",
+      "description": "Contact page returns 404",
+      "location": "Navigation",
+      "screenshot": null,
+      "timestamp": "2025-08-22T09:21:29.982Z"
+    },
+    {
+      "type": "PAGE_ERROR",
+      "severity": "HIGH",
+      "description": "Contact page shows error content",
+      "location": "Page Loading",
+      "screenshot": null,
+      "timestamp": "2025-08-22T09:21:29.982Z"
+    },
+    {
+      "type": "NAVIGATION_404",
+      "severity": "HIGH",
+      "description": "Settings page returns 404",
+      "location": "Navigation",
+      "screenshot": null,
+      "timestamp": "2025-08-22T09:21:30.079Z"
+    },
+    {
+      "type": "PAGE_ERROR",
+      "severity": "HIGH",
+      "description": "Settings page shows error content",
+      "location": "Page Loading",
+      "screenshot": null,
+      "timestamp": "2025-08-22T09:21:30.079Z"
+    },
+    {
+      "type": "ELEMENT_OVERLAP",
+      "severity": "MEDIUM",
+      "description": "Excessive element overlap detected on Mobile view",
+      "location": "Layout",
+      "screenshot": null,
+      "timestamp": "2025-08-22T09:21:32.183Z"
+    },
+    {
+      "type": "ELEMENT_OVERLAP",
+      "severity": "MEDIUM",
+      "description": "Excessive element overlap detected on Tablet view",
+      "location": "Layout",
+      "screenshot": null,
+      "timestamp": "2025-08-22T09:21:33.689Z"
+    },
+    {
+      "type": "ELEMENT_OVERLAP",
+      "severity": "MEDIUM",
+      "description": "Excessive element overlap detected on Desktop view",
+      "location": "Layout",
+      "screenshot": null,
+      "timestamp": "2025-08-22T09:21:35.191Z"
+    },
+    {
+      "type": "MISSING_FORM_LABELS",
+      "severity": "HIGH",
+      "description": "13 form inputs missing proper labels",
+      "location": "Accessibility",
+      "screenshot": null,
+      "timestamp": "2025-08-22T09:21:36.545Z"
+    }
+  ],
+  "consoleErrors": [
+    {
+      "text": "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\n%s%s https://react.dev/link/hydration-mismatch \n\n  ...\n    <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>\n      <RedirectBoundary>\n        <RedirectErrorBoundary router={{...}}>\n          <InnerLayoutRouter url=\"/admin/login\" tree={[...]} cacheNode={{lazyData:null, ...}} segmentPath={[...]}>\n            <SegmentViewNode type=\"page\" pagePath=\"/AdminSetu...\">\n              <SegmentTrieNode>\n              <ClientPageRoot Component={function AdminLoginPage} searchParams={{}} params={{}}>\n                <AdminLoginPage params={Promise} searchParams={Promise}>\n                  <div className=\"min-h-scre...\">\n                    <div>\n                    <div className=\"mt-8 sm:mx...\">\n                      <div className=\"bg-white p...\">\n                        <form className=\"space-y-6\" onSubmit={function handleSubmit} data-testid=\"login-form\">\n                          <div>\n                            <label>\n                            <div className=\"mt-1\">\n                              <input\n                                id=\"username\"\n                                name=\"username\"\n                                type=\"text\"\n                                autoComplete=\"username\"\n                                required={true}\n                                value=\"\"\n                                onChange={function handleInputChange}\n                                data-testid=\"username-input\"\n                                className=\"appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placehol...\"\n                                placeholder=\"Enter your username\"\n-                               style={{caret-color:\"transparent\"}}\n                              >\n                          <div>\n                            <label>\n                            <div className=\"mt-1\">\n                              <input\n                                id=\"password\"\n                                name=\"password\"\n                                type=\"password\"\n                                autoComplete=\"current-password\"\n                                required={true}\n                                value=\"\"\n                                onChange={function handleInputChange}\n                                data-testid=\"password-input\"\n                                className=\"appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placehol...\"\n                                placeholder=\"Enter your password\"\n-                               style={{caret-color:\"transparent\"}}\n                              >\n                          ...\n                        ...\n            ...\n          ...\n",
+      "location": {
+        "url": "http://localhost:3002/_next/static/chunks/9a21b_next_dist_4c3b423e._.js",
+        "lineNumber": 2359,
+        "columnNumber": 31
+      },
+      "timestamp": "2025-08-22T09:21:12.021Z"
+    },
+    {
+      "text": "Error loading dashboard data: TypeError: Failed to fetch\n    at loadDashboardData (http://localhost:3002/_next/static/chunks/AdminSetup_portfolio-cms_src_app_admin_26ae8457._.js:686:36)\n    at AdminDashboard.useEffect (http://localhost:3002/_next/static/chunks/AdminSetup_portfolio-cms_src_app_admin_26ae8457._.js:674:13)\n    at Object.react_stack_bottom_frame (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:13122:22)\n    at runWithFiberInDEV (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:886:74)\n    at commitHookEffectListMount (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:6640:628)\n    at commitHookPassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:6675:60)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7630:33)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7629:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7629:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7673:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7673:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7629:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7633:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7629:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7629:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7629:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7629:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7633:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7629:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7629:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7673:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7673:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7629:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7629:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7673:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7673:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7629:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7633:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)",
+      "location": {
+        "url": "http://localhost:3002/_next/static/chunks/9a21b_next_dist_4c3b423e._.js",
+        "lineNumber": 2359,
+        "columnNumber": 31
+      },
+      "timestamp": "2025-08-22T09:21:15.286Z"
+    },
+    {
+      "text": "Error loading dashboard data: TypeError: Failed to fetch\n    at loadDashboardData (http://localhost:3002/_next/static/chunks/AdminSetup_portfolio-cms_src_app_admin_26ae8457._.js:686:36)\n    at AdminDashboard.useEffect (http://localhost:3002/_next/static/chunks/AdminSetup_portfolio-cms_src_app_admin_26ae8457._.js:674:13)\n    at Object.react_stack_bottom_frame (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:13122:22)\n    at runWithFiberInDEV (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:886:74)\n    at commitHookEffectListMount (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:6640:628)\n    at commitHookPassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:6675:60)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7688:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7687:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7687:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7702:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7702:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7687:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7702:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7687:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7687:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7687:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7687:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7702:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7687:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7687:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7702:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7702:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7687:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7687:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7702:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7702:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7687:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7702:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)",
+      "location": {
+        "url": "http://localhost:3002/_next/static/chunks/9a21b_next_dist_4c3b423e._.js",
+        "lineNumber": 2359,
+        "columnNumber": 31
+      },
+      "timestamp": "2025-08-22T09:21:15.289Z"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://localhost:3002/api/admin/content",
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "timestamp": "2025-08-22T09:21:21.161Z"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://localhost:3002/api/admin/content",
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "timestamp": "2025-08-22T09:21:22.447Z"
+    },
+    {
+      "text": "A component is changing an uncontrolled input to be controlled. This is likely caused by the value changing from undefined to a defined value, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://react.dev/link/controlled-components",
+      "location": {
+        "url": "http://localhost:3002/_next/static/chunks/9a21b_next_dist_4c3b423e._.js",
+        "lineNumber": 2359,
+        "columnNumber": 31
+      },
+      "timestamp": "2025-08-22T09:21:24.012Z"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://localhost:3002/api/admin/content",
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "timestamp": "2025-08-22T09:21:29.197Z"
+    },
+    {
+      "text": "Error loading dashboard data: TypeError: Failed to fetch\n    at loadDashboardData (http://localhost:3002/_next/static/chunks/AdminSetup_portfolio-cms_src_app_admin_26ae8457._.js:686:36)\n    at AdminDashboard.useEffect (http://localhost:3002/_next/static/chunks/AdminSetup_portfolio-cms_src_app_admin_26ae8457._.js:674:13)\n    at Object.react_stack_bottom_frame (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:13122:22)\n    at runWithFiberInDEV (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:886:74)\n    at commitHookEffectListMount (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:6640:628)\n    at commitHookPassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:6675:60)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7630:33)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7629:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7629:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7673:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7673:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7629:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7633:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7629:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7629:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7629:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7629:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7633:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7629:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7629:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7673:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7673:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7629:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7629:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7673:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7673:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7629:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)\n    at commitPassiveMountOnFiber (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7633:17)\n    at recursivelyTraversePassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7621:106)",
+      "location": {
+        "url": "http://localhost:3002/_next/static/chunks/9a21b_next_dist_4c3b423e._.js",
+        "lineNumber": 2359,
+        "columnNumber": 31
+      },
+      "timestamp": "2025-08-22T09:21:30.418Z"
+    },
+    {
+      "text": "Error loading dashboard data: TypeError: Failed to fetch\n    at loadDashboardData (http://localhost:3002/_next/static/chunks/AdminSetup_portfolio-cms_src_app_admin_26ae8457._.js:686:36)\n    at AdminDashboard.useEffect (http://localhost:3002/_next/static/chunks/AdminSetup_portfolio-cms_src_app_admin_26ae8457._.js:674:13)\n    at Object.react_stack_bottom_frame (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:13122:22)\n    at runWithFiberInDEV (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:886:74)\n    at commitHookEffectListMount (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:6640:628)\n    at commitHookPassiveMountEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:6675:60)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7688:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7687:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7687:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7702:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7702:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7687:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7702:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7687:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7687:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7687:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7687:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7702:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7687:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7687:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7702:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7702:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7687:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7687:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7702:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7702:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7687:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)\n    at reconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7702:17)\n    at recursivelyTraverseReconnectPassiveEffects (http://localhost:3002/_next/static/chunks/9a21b_next_dist_compiled_react-dom_5906a524._.js:7679:68)",
+      "location": {
+        "url": "http://localhost:3002/_next/static/chunks/9a21b_next_dist_4c3b423e._.js",
+        "lineNumber": 2359,
+        "columnNumber": 31
+      },
+      "timestamp": "2025-08-22T09:21:30.419Z"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://localhost:3002/api/admin/content",
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "timestamp": "2025-08-22T09:21:35.980Z"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://localhost:3002/api/admin/content",
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "timestamp": "2025-08-22T09:21:37.688Z"
+    }
+  ],
+  "networkErrors": [
+    {
+      "url": "http://localhost:3002/api/admin/content",
+      "status": 500,
+      "statusText": "Internal Server Error",
+      "timestamp": "2025-08-22T09:21:21.161Z"
+    },
+    {
+      "url": "http://localhost:3002/api/admin/content",
+      "status": 500,
+      "statusText": "Internal Server Error",
+      "timestamp": "2025-08-22T09:21:22.446Z"
+    },
+    {
+      "url": "http://localhost:3002/api/admin/content",
+      "status": 500,
+      "statusText": "Internal Server Error",
+      "timestamp": "2025-08-22T09:21:29.197Z"
+    },
+    {
+      "url": "http://localhost:3002/api/admin/content",
+      "status": 500,
+      "statusText": "Internal Server Error",
+      "timestamp": "2025-08-22T09:21:35.980Z"
+    },
+    {
+      "url": "http://localhost:3002/api/admin/content",
+      "status": 500,
+      "statusText": "Internal Server Error",
+      "timestamp": "2025-08-22T09:21:37.688Z"
+    }
+  ],
+  "recommendations": [
+    "Fix contact count synchronization between dashboard and contact page",
+    "Implement proper form validation with user-friendly messages",
+    "Add accessibility labels to all form inputs",
+    "Fix data persistence issues between page navigations",
+    "Resolve responsive design overlapping elements",
+    "Add proper error handling for network failures"
+  ]
+}
