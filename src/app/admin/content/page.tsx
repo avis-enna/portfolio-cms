@@ -130,7 +130,63 @@ export default function ContentManagement() {
   const [isLoading, setIsLoading] = useState(true)
   const [isSaving, setIsSaving] = useState(false)
   const [message, setMessage] = useState('')
+  const [validationErrors, setValidationErrors] = useState<{[key: string]: string}>({})
   const [newSkill, setNewSkill] = useState({ technical: '', soft: '', tools: '' })
+
+  // Email validation regex
+  const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+
+  // Validation function
+  const validateForm = () => {
+    const errors: {[key: string]: string} = {}
+
+    // Personal Info validation
+    if (!content.personalInfo.name.trim()) {
+      errors['personalInfo.name'] = 'Name is required'
+    }
+    if (!content.personalInfo.title.trim()) {
+      errors['personalInfo.title'] = 'Title is required'
+    }
+    if (!content.personalInfo.bio.trim()) {
+      errors['personalInfo.bio'] = 'Bio is required'
+    } else if (content.personalInfo.bio.trim().length < 50) {
+      errors['personalInfo.bio'] = 'Bio must be at least 50 characters long'
+    }
+
+    // Contact Info validation
+    if (!content.contactInfo.email.trim()) {
+      errors['contactInfo.email'] = 'Email is required'
+    } else if (!emailRegex.test(content.contactInfo.email)) {
+      errors['contactInfo.email'] = 'Please enter a valid email address'
+    }
+    if (!content.contactInfo.location.trim()) {
+      errors['contactInfo.location'] = 'Location is required'
+    }
+
+    // SEO Metadata validation
+    if (!content.seoMetadata.title.trim()) {
+      errors['seoMetadata.title'] = 'SEO title is required'
+    }
+    if (!content.seoMetadata.description.trim()) {
+      errors['seoMetadata.description'] = 'SEO description is required'
+    }
+
+    // Skills validation
+    if (content.technicalSkills.length === 0) {
+      errors['technicalSkills'] = 'At least one technical skill category is required'
+    }
+    if (content.softSkills.length === 0) {
+      errors['softSkills'] = 'At least one soft skill is required'
+    }
+
+    setValidationErrors(errors)
+    return Object.keys(errors).length === 0
+  }
+
+  // Helper function to get error message for a field
+  const getFieldError = (fieldPath: string) => {
+    return validationErrors[fieldPath]
+  }
 
   useEffect(() => {
     loadContent()
@@ -349,6 +405,13 @@ export default function ContentManagement() {
     setIsSaving(true)
     setMessage('')
 
+    // Validate form before submitting
+    if (!validateForm()) {
+      setIsSaving(false)
+      error('Validation failed', 'Please fix the errors below and try again.')
+      return
+    }
+
     try {
       const accessToken = localStorage.getItem('accessToken')
       if (!accessToken) {
@@ -433,9 +496,16 @@ export default function ContentManagement() {
                 type="text"
                 value={content.personalInfo.name}
                 onChange={(e) => handlePersonalInfoChange('name', e.target.value)}
-                className="w-full px-3 py-2 bg-gray-800 border border-gray-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className={`w-full px-3 py-2 bg-gray-800 border text-white rounded-md focus:outline-none focus:ring-2 focus:border-transparent ${
+                  getFieldError('personalInfo.name')
+                    ? 'border-red-500 focus:ring-red-500'
+                    : 'border-gray-600 focus:ring-blue-500'
+                }`}
                 placeholder="Your full name"
               />
+              {getFieldError('personalInfo.name') && (
+                <p className="mt-1 text-sm text-red-500">{getFieldError('personalInfo.name')}</p>
+              )}
             </div>
             <div>
               <label htmlFor="personal-title" className="block text-sm font-medium text-gray-300 mb-1">Title</label>
@@ -444,9 +514,16 @@ export default function ContentManagement() {
                 type="text"
                 value={content.personalInfo.title}
                 onChange={(e) => handlePersonalInfoChange('title', e.target.value)}
-                className="w-full px-3 py-2 bg-gray-800 border border-gray-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className={`w-full px-3 py-2 bg-gray-800 border text-white rounded-md focus:outline-none focus:ring-2 focus:border-transparent ${
+                  getFieldError('personalInfo.title')
+                    ? 'border-red-500 focus:ring-red-500'
+                    : 'border-gray-600 focus:ring-blue-500'
+                }`}
                 placeholder="Software Developer"
               />
+              {getFieldError('personalInfo.title') && (
+                <p className="mt-1 text-sm text-red-500">{getFieldError('personalInfo.title')}</p>
+              )}
             </div>
             <div>
               <label htmlFor="personal-email" className="block text-sm font-medium text-gray-300 mb-1">Email</label>
@@ -499,9 +576,16 @@ export default function ContentManagement() {
                 rows={4}
                 value={content.personalInfo.bio}
                 onChange={(e) => handlePersonalInfoChange('bio', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
+                  getFieldError('personalInfo.bio')
+                    ? 'border-red-500 focus:ring-red-500'
+                    : 'border-gray-300 focus:ring-blue-500'
+                }`}
                 placeholder="Tell us about yourself, your experience, and what you're passionate about..."
               />
+              {getFieldError('personalInfo.bio') && (
+                <p className="mt-1 text-sm text-red-500">{getFieldError('personalInfo.bio')}</p>
+              )}
             </div>
           </div>
         </div>
@@ -509,6 +593,16 @@ export default function ContentManagement() {
         {/* Skills */}
         <div className="bg-gray-900 border border-gray-700 rounded-lg p-6">
           <h2 className="text-lg font-medium text-white mb-4">Skills</h2>
+          {(getFieldError('technicalSkills') || getFieldError('softSkills')) && (
+            <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
+              {getFieldError('technicalSkills') && (
+                <p className="text-sm text-red-600">{getFieldError('technicalSkills')}</p>
+              )}
+              {getFieldError('softSkills') && (
+                <p className="text-sm text-red-600">{getFieldError('softSkills')}</p>
+              )}
+            </div>
+          )}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {(['technical', 'soft', 'tools'] as const).map((category) => (
               <div key={category}>
@@ -735,6 +829,60 @@ export default function ContentManagement() {
                 No education added yet. Click "Add Education" to get started.
               </div>
             )}
+          </div>
+        </div>
+
+        {/* Contact Information */}
+        <div className="bg-gray-900 border border-gray-700 rounded-lg p-6">
+          <h2 className="text-lg font-medium text-white mb-4">Contact Information</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="contact-email" className="block text-sm font-medium text-gray-300 mb-1">Email</label>
+              <input
+                id="contact-email"
+                type="email"
+                value={content.contactInfo.email}
+                onChange={(e) => handleContactInfoChange('email', e.target.value)}
+                className={`w-full px-3 py-2 bg-gray-800 border text-white rounded-md focus:outline-none focus:ring-2 focus:border-transparent ${
+                  getFieldError('contactInfo.email')
+                    ? 'border-red-500 focus:ring-red-500'
+                    : 'border-gray-600 focus:ring-blue-500'
+                }`}
+                placeholder="your.email@example.com"
+              />
+              {getFieldError('contactInfo.email') && (
+                <p className="mt-1 text-sm text-red-500">{getFieldError('contactInfo.email')}</p>
+              )}
+            </div>
+            <div>
+              <label htmlFor="contact-phone" className="block text-sm font-medium text-gray-300 mb-1">Phone</label>
+              <input
+                id="contact-phone"
+                type="text"
+                value={content.contactInfo.phone || ''}
+                onChange={(e) => handleContactInfoChange('phone', e.target.value)}
+                className="w-full px-3 py-2 bg-gray-800 border border-gray-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="+1 (555) 123-4567"
+              />
+            </div>
+            <div>
+              <label htmlFor="contact-location" className="block text-sm font-medium text-gray-300 mb-1">Location</label>
+              <input
+                id="contact-location"
+                type="text"
+                value={content.contactInfo.location}
+                onChange={(e) => handleContactInfoChange('location', e.target.value)}
+                className={`w-full px-3 py-2 bg-gray-800 border text-white rounded-md focus:outline-none focus:ring-2 focus:border-transparent ${
+                  getFieldError('contactInfo.location')
+                    ? 'border-red-500 focus:ring-red-500'
+                    : 'border-gray-600 focus:ring-blue-500'
+                }`}
+                placeholder="San Francisco, CA"
+              />
+              {getFieldError('contactInfo.location') && (
+                <p className="mt-1 text-sm text-red-500">{getFieldError('contactInfo.location')}</p>
+              )}
+            </div>
           </div>
         </div>
 
@@ -974,6 +1122,55 @@ export default function ContentManagement() {
                 No certifications added yet. Click "Add Certification" to get started.
               </div>
             )}
+          </div>
+        </div>
+
+        {/* SEO Metadata */}
+        <div className="bg-gray-900 border border-gray-700 rounded-lg p-6">
+          <h2 className="text-lg font-medium text-white mb-4">SEO Metadata</h2>
+          <div className="grid grid-cols-1 gap-4">
+            <div>
+              <label htmlFor="seo-title" className="block text-sm font-medium text-gray-300 mb-1">SEO Title</label>
+              <input
+                id="seo-title"
+                type="text"
+                value={content.seoMetadata.title}
+                onChange={(e) => setContent(prev => ({
+                  ...prev,
+                  seoMetadata: { ...prev.seoMetadata, title: e.target.value }
+                }))}
+                className={`w-full px-3 py-2 bg-gray-800 border text-white rounded-md focus:outline-none focus:ring-2 focus:border-transparent ${
+                  getFieldError('seoMetadata.title')
+                    ? 'border-red-500 focus:ring-red-500'
+                    : 'border-gray-600 focus:ring-blue-500'
+                }`}
+                placeholder="Your Portfolio - Software Developer"
+              />
+              {getFieldError('seoMetadata.title') && (
+                <p className="mt-1 text-sm text-red-500">{getFieldError('seoMetadata.title')}</p>
+              )}
+            </div>
+            <div>
+              <label htmlFor="seo-description" className="block text-sm font-medium text-gray-300 mb-1">SEO Description</label>
+              <textarea
+                id="seo-description"
+                rows={3}
+                value={content.seoMetadata.description}
+                onChange={(e) => setContent(prev => ({
+                  ...prev,
+                  seoMetadata: { ...prev.seoMetadata, description: e.target.value }
+                }))}
+                className={`w-full px-3 py-2 bg-gray-800 border text-white rounded-md focus:outline-none focus:ring-2 focus:border-transparent ${
+                  getFieldError('seoMetadata.description')
+                    ? 'border-red-500 focus:ring-red-500'
+                    : 'border-gray-600 focus:ring-blue-500'
+                }`}
+                placeholder="Brief description of your portfolio and skills for search engines"
+              />
+              {getFieldError('seoMetadata.description') && (
+                <p className="mt-1 text-sm text-red-500">{getFieldError('seoMetadata.description')}</p>
+              )}
+            </div>
           </div>
         </div>
       </div>
