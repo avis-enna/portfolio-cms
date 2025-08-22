@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import AdminLayout from '../components/AdminLayout'
 import { useToast } from '@/components/Toast'
@@ -136,8 +136,8 @@ export default function ContentManagement() {
   // Email validation regex
   const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
 
-  // Validation function
-  const validateForm = () => {
+  // Validation function with memoization
+  const validateForm = useCallback(() => {
     const errors: {[key: string]: string} = {}
 
     // Personal Info validation
@@ -181,7 +181,7 @@ export default function ContentManagement() {
 
     setValidationErrors(errors)
     return Object.keys(errors).length === 0
-  }
+  }, [content, emailRegex])
 
   // Helper function to get error message for a field
   const getFieldError = (fieldPath: string) => {
@@ -222,7 +222,7 @@ export default function ContentManagement() {
     }
   }
 
-  const handlePersonalInfoChange = (field: keyof PersonalInfo, value: string) => {
+  const handlePersonalInfoChange = useCallback((field: keyof PersonalInfo, value: string) => {
     setContent(prev => ({
       ...prev,
       personalInfo: {
@@ -230,9 +230,9 @@ export default function ContentManagement() {
         [field]: value
       }
     }))
-  }
+  }, [])
 
-  const handleContactInfoChange = (field: keyof typeof content.contactInfo, value: string) => {
+  const handleContactInfoChange = useCallback((field: keyof typeof content.contactInfo, value: string) => {
     setContent(prev => ({
       ...prev,
       contactInfo: {
@@ -240,7 +240,7 @@ export default function ContentManagement() {
         [field]: value
       }
     }))
-  }
+  }, [])
 
   const addSkill = (category: 'technical' | 'soft' | 'tools') => {
     const skill = newSkill[category].trim()

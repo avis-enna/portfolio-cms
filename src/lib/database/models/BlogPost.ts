@@ -165,9 +165,26 @@ BlogPostSchema.index({ categories: 1 })
 BlogPostSchema.index({ createdAt: -1 })
 BlogPostSchema.index({ updatedAt: -1 })
 
-// Compound indexes
+// Compound indexes for performance
 BlogPostSchema.index({ status: 1, publishedAt: -1 })
 BlogPostSchema.index({ status: 1, displayOrder: 1 })
+BlogPostSchema.index({ author: 1, status: 1, publishedAt: -1 })
+BlogPostSchema.index({ tags: 1, status: 1, publishedAt: -1 })
+BlogPostSchema.index({ categories: 1, status: 1, publishedAt: -1 })
+// Text search index for better search performance
+BlogPostSchema.index({
+  title: 'text',
+  content: 'text',
+  tags: 'text',
+  categories: 'text'
+}, {
+  weights: {
+    title: 10,
+    tags: 5,
+    categories: 3,
+    content: 1
+  }
+})
 
 // Pre-save middleware
 BlogPostSchema.pre('save', function (next) {
@@ -232,15 +249,17 @@ BlogPostSchema.methods.generateExcerpt = function (): string {
   return plainText.substring(0, 250).trim() + '...'
 }
 
-// Static method to get published posts
-BlogPostSchema.statics.getPublished = function (limit?: number, skip?: number) {
+// Static method to get published posts with performance optimization
+BlogPostSchema.statics.getPublished = function (limit?: number, skip?: number, lean = false) {
   const query = this.find({ status: 'published' })
     .sort({ publishedAt: -1 })
+    .select('title slug excerpt author publishedAt readingTime tags categories viewCount')
     .populate('author', 'username email')
-  
+
   if (limit) query.limit(limit)
   if (skip) query.skip(skip)
-  
+  if (lean) query.lean()
+
   return query
 }
 
