@@ -8,9 +8,37 @@ export interface IUser extends Document {
   password: string
   refreshTokens: string[]
   lastLogin?: Date
+  linkedInIntegration?: {
+    isConnected: boolean
+    accessToken?: string
+    refreshToken?: string
+    expiresAt?: Date
+    scope?: string
+    profile?: {
+      id: string
+      firstName?: {
+        localized?: Record<string, string>
+        preferredLocale?: {
+          country: string
+          language: string
+        }
+      }
+      lastName?: {
+        localized?: Record<string, string>
+        preferredLocale?: {
+          country: string
+          language: string
+        }
+      }
+      email?: string
+      profilePicture?: string
+    }
+    connectedAt?: Date
+    lastUsed?: Date
+  }
   createdAt: Date
   updatedAt: Date
-  
+
   // Methods
   comparePassword(candidatePassword: string): Promise<boolean>
   addRefreshToken(token: string): Promise<void>
@@ -54,6 +82,57 @@ const UserSchema = new Schema<IUser>(
     lastLogin: {
       type: Date,
       default: null,
+    },
+    linkedInIntegration: {
+      isConnected: {
+        type: Boolean,
+        default: false,
+      },
+      accessToken: {
+        type: String,
+        select: false, // Don't include in queries by default for security
+      },
+      refreshToken: {
+        type: String,
+        select: false,
+      },
+      expiresAt: {
+        type: Date,
+      },
+      scope: {
+        type: String,
+      },
+      profile: {
+        id: String,
+        firstName: {
+          localized: {
+            type: Map,
+            of: String,
+          },
+          preferredLocale: {
+            country: String,
+            language: String,
+          },
+        },
+        lastName: {
+          localized: {
+            type: Map,
+            of: String,
+          },
+          preferredLocale: {
+            country: String,
+            language: String,
+          },
+        },
+        email: String,
+        profilePicture: String,
+      },
+      connectedAt: {
+        type: Date,
+      },
+      lastUsed: {
+        type: Date,
+      },
     },
   },
   {
