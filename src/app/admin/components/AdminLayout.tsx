@@ -280,7 +280,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
         </header>
 
         {/* Page content */}
-        <main className="flex-1 p-6 bg-black overflow-auto" data-testid="admin-main-content">
+        <main className="flex-1 p-4 sm:p-6 bg-black overflow-auto" data-testid="admin-main-content">
           {children}
         </main>
       </div>

@@ -462,18 +462,21 @@ export default function ContentManagement() {
     <AdminLayout>
       <div className="space-y-6" data-testid="content-management">
         {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-white">Portfolio Content</h1>
-            <p className="text-gray-400">Manage your personal information and portfolio content</p>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="min-w-0 flex-1">
+            <h1 className="text-xl sm:text-2xl font-bold text-white truncate">Portfolio Content</h1>
+            <p className="text-sm sm:text-base text-gray-400 mt-1">Manage your personal information and portfolio content</p>
           </div>
-          <SaveButton
-            onClick={handleSave}
-            loading={isSaving}
-            size="lg"
-          >
-            Save Changes
-          </SaveButton>
+          <div className="flex-shrink-0">
+            <SaveButton
+              onClick={handleSave}
+              loading={isSaving}
+              size="lg"
+              className="w-full sm:w-auto"
+            >
+              Save Changes
+            </SaveButton>
+          </div>
         </div>
 
         {/* Message */}
@@ -486,9 +489,9 @@ export default function ContentManagement() {
         )}
 
         {/* Personal Information */}
-        <div className="bg-gray-900 border border-gray-700 rounded-lg p-6">
+        <div className="bg-gray-900 border border-gray-700 rounded-lg p-4 sm:p-6">
           <h2 className="text-lg font-medium text-white mb-4">Personal Information</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             <div>
               <label htmlFor="personal-name" className="block text-sm font-medium text-gray-300 mb-1">Name</label>
               <input
@@ -591,7 +594,7 @@ export default function ContentManagement() {
         </div>
 
         {/* Skills */}
-        <div className="bg-gray-900 border border-gray-700 rounded-lg p-6">
+        <div className="bg-gray-900 border border-gray-700 rounded-lg p-4 sm:p-6">
           <h2 className="text-lg font-medium text-white mb-4">Skills</h2>
           {(getFieldError('technicalSkills') || getFieldError('softSkills')) && (
             <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
@@ -603,7 +606,7 @@ export default function ContentManagement() {
               )}
             </div>
           )}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {(['technical', 'soft', 'tools'] as const).map((category) => (
               <div key={category}>
                 <h3 className="text-sm font-medium text-gray-300 mb-2 capitalize">
@@ -647,10 +650,10 @@ export default function ContentManagement() {
         </div>
 
         {/* Experience */}
-        <div className="bg-gray-900 border border-gray-700 rounded-lg p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gray-900 border border-gray-700 rounded-lg p-4 sm:p-6">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
             <h2 className="text-lg font-medium text-white">Work Experience</h2>
-            <AddButton onClick={addExperience}>
+            <AddButton onClick={addExperience} className="w-full sm:w-auto">
               Add Experience
             </AddButton>
           </div>
@@ -733,13 +736,13 @@ export default function ContentManagement() {
         </div>
 
         {/* Education */}
-        <div className="bg-gray-900 border border-gray-700 rounded-lg p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gray-900 border border-gray-700 rounded-lg p-4 sm:p-6">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
             <h2 className="text-lg font-medium text-white">Education</h2>
             <button
               type="button"
               onClick={addEducation}
-              className="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm font-medium"
+              className="w-full sm:w-auto px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm font-medium"
             >
               Add Education
             </button>
@@ -833,9 +836,9 @@ export default function ContentManagement() {
         </div>
 
         {/* Contact Information */}
-        <div className="bg-gray-900 border border-gray-700 rounded-lg p-6">
+        <div className="bg-gray-900 border border-gray-700 rounded-lg p-4 sm:p-6">
           <h2 className="text-lg font-medium text-white mb-4">Contact Information</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             <div>
               <label htmlFor="contact-email" className="block text-sm font-medium text-gray-300 mb-1">Email</label>
               <input
@@ -887,9 +890,9 @@ export default function ContentManagement() {
         </div>
 
         {/* Social Links */}
-        <div className="bg-gray-900 border border-gray-700 rounded-lg p-6">
+        <div className="bg-gray-900 border border-gray-700 rounded-lg p-4 sm:p-6">
           <h2 className="text-lg font-medium text-white mb-4">Social Links</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-1">LinkedIn</label>
               <input
@@ -925,13 +928,13 @@ export default function ContentManagement() {
         </div>
 
         {/* Projects */}
-        <div className="bg-gray-900 border border-gray-700 rounded-lg p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gray-900 border border-gray-700 rounded-lg p-4 sm:p-6">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
             <h2 className="text-lg font-medium text-white">Projects</h2>
             <button
               type="button"
               onClick={addProject}
-              className="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm font-medium"
+              className="w-full sm:w-auto px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm font-medium"
             >
               Add Project
             </button>
@@ -1029,13 +1032,13 @@ export default function ContentManagement() {
         </div>
 
         {/* Certifications */}
-        <div className="bg-gray-900 border border-gray-700 rounded-lg p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gray-900 border border-gray-700 rounded-lg p-4 sm:p-6">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
             <h2 className="text-lg font-medium text-white">Certifications</h2>
             <button
               type="button"
               onClick={addCertification}
-              className="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm font-medium"
+              className="w-full sm:w-auto px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm font-medium"
             >
               Add Certification
             </button>
@@ -1126,9 +1129,9 @@ export default function ContentManagement() {
         </div>
 
         {/* SEO Metadata */}
-        <div className="bg-gray-900 border border-gray-700 rounded-lg p-6">
+        <div className="bg-gray-900 border border-gray-700 rounded-lg p-4 sm:p-6">
           <h2 className="text-lg font-medium text-white mb-4">SEO Metadata</h2>
-          <div className="grid grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:gap-6">
             <div>
               <label htmlFor="seo-title" className="block text-sm font-medium text-gray-300 mb-1">SEO Title</label>
               <input
