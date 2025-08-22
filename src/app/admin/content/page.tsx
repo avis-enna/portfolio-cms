@@ -3,6 +3,9 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import AdminLayout from '../components/AdminLayout'
+import { useToast } from '@/components/Toast'
+import { EnhancedButton, SaveButton, AddButton, DeleteButton } from '@/components/EnhancedButton'
+import { useAutoSave } from '@/hooks/useAutoSave'
 
 interface PersonalInfo {
   name: string
@@ -93,6 +96,9 @@ interface PortfolioContent {
 }
 
 export default function ContentManagement() {
+  const { success, error, warning } = useToast()
+  const router = useRouter()
+
   const [content, setContent] = useState<PortfolioContent>({
     personalInfo: {
       name: '',
@@ -125,7 +131,6 @@ export default function ContentManagement() {
   const [isSaving, setIsSaving] = useState(false)
   const [message, setMessage] = useState('')
   const [newSkill, setNewSkill] = useState({ technical: '', soft: '', tools: '' })
-  const router = useRouter()
 
   useEffect(() => {
     loadContent()
@@ -347,6 +352,7 @@ export default function ContentManagement() {
     try {
       const accessToken = localStorage.getItem('accessToken')
       if (!accessToken) {
+        warning('Session expired', 'Please log in again to continue.')
         router.push('/admin/login')
         return
       }
@@ -363,13 +369,16 @@ export default function ContentManagement() {
       const data = await response.json()
 
       if (data.success) {
+        success('Content saved successfully!', 'Your portfolio content has been updated.')
         setMessage('Content saved successfully!')
         setTimeout(() => setMessage(''), 3000)
       } else {
+        error('Save failed', data.error || 'Failed to save content. Please try again.')
         setMessage(data.error || 'Error saving content')
       }
-    } catch (error) {
-      console.error('Error saving content:', error)
+    } catch (err) {
+      console.error('Error saving content:', err)
+      error('Save failed', 'An unexpected error occurred while saving.')
       setMessage('Error saving content')
     } finally {
       setIsSaving(false)
@@ -395,18 +404,13 @@ export default function ContentManagement() {
             <h1 className="text-2xl font-bold text-white">Portfolio Content</h1>
             <p className="text-gray-400">Manage your personal information and portfolio content</p>
           </div>
-          <button
-            type="button"
+          <SaveButton
             onClick={handleSave}
-            disabled={isSaving}
-            className={`px-4 py-2 rounded-md text-sm font-medium ${
-              isSaving
-                ? 'bg-gray-400 text-white cursor-not-allowed'
-                : 'bg-blue-600 text-white hover:bg-blue-700'
-            }`}
+            loading={isSaving}
+            size="lg"
           >
-            {isSaving ? 'Saving...' : 'Save Changes'}
-          </button>
+            Save Changes
+          </SaveButton>
         </div>
 
         {/* Message */}
@@ -545,26 +549,22 @@ export default function ContentManagement() {
         <div className="bg-gray-900 border border-gray-700 rounded-lg p-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-medium text-white">Work Experience</h2>
-            <button
-              type="button"
-              onClick={addExperience}
-              className="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm font-medium"
-            >
+            <AddButton onClick={addExperience}>
               Add Experience
-            </button>
+            </AddButton>
           </div>
           <div className="space-y-6">
             {content.experience.map((exp, index) => (
               <div key={exp.id || index} className="border border-gray-200 rounded-lg p-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-md font-medium text-gray-900">Experience #{index + 1}</h3>
-                  <button
-                    type="button"
+                  <DeleteButton
                     onClick={() => removeExperience(index)}
-                    className="text-red-600 hover:text-red-800 text-sm"
+                    size="sm"
+                    variant="ghost"
                   >
                     Remove
-                  </button>
+                  </DeleteButton>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
