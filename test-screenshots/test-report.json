@@ -1,0 +1,15 @@
+{
+  "timestamp": "2025-08-22T05:56:31.189Z",
+  "totalIssues": 1,
+  "issues": [
+    "Dashboard: action-settings button not found or not hoverable"
+  ],
+  "screenshotCount": 21,
+  "recommendations": [
+    "Review all screenshots for visual inconsistencies",
+    "Fix any console errors found during testing",
+    "Ensure all buttons and forms are functional",
+    "Verify responsive design across all breakpoints",
+    "Test all navigation flows work correctly"
+  ]
+}

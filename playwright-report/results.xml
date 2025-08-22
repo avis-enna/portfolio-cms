@@ -1,0 +1,2099 @@
+<testsuites id="" name="" tests="85" failures="42" skipped="15" errors="0" time="130.072122">
+<testsuite name="public/portfolio.spec.ts" timestamp="2025-08-21T08:25:08.273Z" hostname="chromium" tests="17" failures="9" skipped="0" time="107.062" errors="0">
+<testcase name="Public Portfolio › Homepage › should display portfolio homepage correctly" classname="public/portfolio.spec.ts" time="5.486">
+</testcase>
+<testcase name="Public Portfolio › Homepage › should have proper SEO meta tags" classname="public/portfolio.spec.ts" time="5.487">
+<failure message="portfolio.spec.ts:25:9 should have proper SEO meta tags" type="FAILURE">
+<![CDATA[  [chromium] › public/portfolio.spec.ts:25:9 › Public Portfolio › Homepage › should have proper SEO meta tags 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Portfolio"
+    Received string:    "Create Next App"
+
+      28 |       // Check title
+      29 |       const title = await page.title()
+    > 30 |       expect(title).toContain('Portfolio')
+         |                     ^
+      31 |       expect(title.length).toBeGreaterThan(10)
+      32 |       expect(title.length).toBeLessThan(60)
+      33 |       
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:30:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-chromium/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Homepage › should be accessible" classname="public/portfolio.spec.ts" time="9.131">
+<failure message="portfolio.spec.ts:50:9 should be accessible" type="FAILURE">
+<![CDATA[  [chromium] › public/portfolio.spec.ts:50:9 › Public Portfolio › Homepage › should be accessible ──
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('h1')
+    Expected: 1
+    Received: 2
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" with timeout 5000ms
+      - waiting for locator('h1')
+        8 × locator resolved to 2 elements
+          - unexpected value "2"
+
+
+      53 |       // Check for proper heading hierarchy
+      54 |       const h1 = page.locator('h1')
+    > 55 |       await expect(h1).toHaveCount(1)
+         |                        ^
+      56 |       
+      57 |       // Check for alt text on images
+      58 |       const images = page.locator('img')
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:55:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-2f2ef-mepage-should-be-accessible-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-2f2ef-mepage-should-be-accessible-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-2f2ef-mepage-should-be-accessible-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-2f2ef-mepage-should-be-accessible-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-2f2ef-mepage-should-be-accessible-chromium/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-2f2ef-mepage-should-be-accessible-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Homepage › should have working navigation" classname="public/portfolio.spec.ts" time="7.337">
+</testcase>
+<testcase name="Public Portfolio › Homepage › should display contact form" classname="public/portfolio.spec.ts" time="6.812">
+</testcase>
+<testcase name="Public Portfolio › Contact Form › should submit contact form successfully" classname="public/portfolio.spec.ts" time="8.028">
+<failure message="portfolio.spec.ts:123:9 should submit contact form successfully" type="FAILURE">
+<![CDATA[  [chromium] › public/portfolio.spec.ts:123:9 › Public Portfolio › Contact Form › should submit contact form successfully 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('[data-testid="success-message"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="success-message"]')
+
+
+      131 |       
+      132 |       // Should show success message
+    > 133 |       await expect(page.locator('[data-testid="success-message"]')).toBeVisible()
+          |                                                                     ^
+      134 |       await expect(page.locator('[data-testid="success-message"]')).toContainText('Thank you for your message')
+      135 |       
+      136 |       // Form should be reset
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:133:69
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-f85f5-t-contact-form-successfully-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-f85f5-t-contact-form-successfully-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-f85f5-t-contact-form-successfully-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-f85f5-t-contact-form-successfully-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-f85f5-t-contact-form-successfully-chromium/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-f85f5-t-contact-form-successfully-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Contact Form › should validate required fields" classname="public/portfolio.spec.ts" time="7.004">
+<failure message="portfolio.spec.ts:142:9 should validate required fields" type="FAILURE">
+<![CDATA[  [chromium] › public/portfolio.spec.ts:142:9 › Public Portfolio › Contact Form › should validate required fields 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('[data-testid="name-error"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="name-error"]')
+
+
+      145 |       
+      146 |       // Should show validation errors
+    > 147 |       await expect(page.locator('[data-testid="name-error"]')).toBeVisible()
+          |                                                                ^
+      148 |       await expect(page.locator('[data-testid="email-error"]')).toBeVisible()
+      149 |       await expect(page.locator('[data-testid="message-error"]')).toBeVisible()
+      150 |       
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:147:64
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-5d41d-ld-validate-required-fields-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-5d41d-ld-validate-required-fields-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-5d41d-ld-validate-required-fields-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-5d41d-ld-validate-required-fields-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-5d41d-ld-validate-required-fields-chromium/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-5d41d-ld-validate-required-fields-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Contact Form › should validate email format" classname="public/portfolio.spec.ts" time="7.142">
+<failure message="portfolio.spec.ts:155:9 should validate email format" type="FAILURE">
+<![CDATA[  [chromium] › public/portfolio.spec.ts:155:9 › Public Portfolio › Contact Form › should validate email format 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('[data-testid="email-error"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="email-error"]')
+
+
+      162 |       
+      163 |       // Should show email validation error
+    > 164 |       await expect(page.locator('[data-testid="email-error"]')).toBeVisible()
+          |                                                                 ^
+      165 |       await expect(page.locator('[data-testid="email-error"]')).toContainText('valid email')
+      166 |     })
+      167 |
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:164:65
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-178b2-hould-validate-email-format-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-178b2-hould-validate-email-format-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-178b2-hould-validate-email-format-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-178b2-hould-validate-email-format-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-178b2-hould-validate-email-format-chromium/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-178b2-hould-validate-email-format-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Contact Form › should handle form submission errors" classname="public/portfolio.spec.ts" time="8.651">
+<failure message="portfolio.spec.ts:168:9 should handle form submission errors" type="FAILURE">
+<![CDATA[  [chromium] › public/portfolio.spec.ts:168:9 › Public Portfolio › Contact Form › should handle form submission errors 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('[data-testid="error-message"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="error-message"]')
+
+
+      183 |       
+      184 |       // Should show error message
+    > 185 |       await expect(page.locator('[data-testid="error-message"]')).toBeVisible()
+          |                                                                   ^
+      186 |       await expect(page.locator('[data-testid="error-message"]')).toContainText('error')
+      187 |     })
+      188 |
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:185:67
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-2532c-ndle-form-submission-errors-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-2532c-ndle-form-submission-errors-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-2532c-ndle-form-submission-errors-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-2532c-ndle-form-submission-errors-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-2532c-ndle-form-submission-errors-chromium/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-2532c-ndle-form-submission-errors-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Contact Form › should show loading state during submission" classname="public/portfolio.spec.ts" time="9.693">
+<failure message="portfolio.spec.ts:189:9 should show loading state during submission" type="FAILURE">
+<![CDATA[  [chromium] › public/portfolio.spec.ts:189:9 › Public Portfolio › Contact Form › should show loading state during submission 
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  locator('[data-testid="contact-submit"]')
+    Expected: disabled
+    Received: enabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeDisabled" with timeout 5000ms
+      - waiting for locator('[data-testid="contact-submit"]')
+        8 × locator resolved to <button type="submit" data-testid="contact-submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Send Message</button>
+          - unexpected value "enabled"
+
+
+      206 |       
+      207 |       // Should show loading state
+    > 208 |       await expect(page.locator('[data-testid="contact-submit"]')).toBeDisabled()
+          |                                                                    ^
+      209 |       await expect(page.locator('[data-testid="loading-spinner"]')).toBeVisible()
+      210 |     })
+      211 |   })
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:208:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-c2ff2-ing-state-during-submission-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-c2ff2-ing-state-during-submission-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-c2ff2-ing-state-during-submission-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-c2ff2-ing-state-during-submission-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-c2ff2-ing-state-during-submission-chromium/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-c2ff2-ing-state-during-submission-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Blog Section › should navigate to blog page" classname="public/portfolio.spec.ts" time="3.228">
+</testcase>
+<testcase name="Public Portfolio › Blog Section › should display blog posts" classname="public/portfolio.spec.ts" time="3.082">
+</testcase>
+<testcase name="Public Portfolio › Blog Section › should navigate to individual blog post" classname="public/portfolio.spec.ts" time="10.073">
+<failure message="portfolio.spec.ts:247:9 should navigate to individual blog post" type="FAILURE">
+<![CDATA[  [chromium] › public/portfolio.spec.ts:247:9 › Public Portfolio › Blog Section › should navigate to individual blog post 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('[data-testid="blog-post"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="blog-post"]')
+
+
+      259 |         
+      260 |         // Should display post content
+    > 261 |         await expect(page.locator('[data-testid="blog-post"]')).toBeVisible()
+          |                                                                 ^
+      262 |         await expect(page.locator('[data-testid="post-title"]')).toBeVisible()
+      263 |         await expect(page.locator('[data-testid="post-content"]')).toBeVisible()
+      264 |         await expect(page.locator('[data-testid="post-meta"]')).toBeVisible()
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:261:65
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-498f8-ate-to-individual-blog-post-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-498f8-ate-to-individual-blog-post-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-498f8-ate-to-individual-blog-post-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-498f8-ate-to-individual-blog-post-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-498f8-ate-to-individual-blog-post-chromium/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-498f8-ate-to-individual-blog-post-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Responsive Design › should work on mobile devices" classname="public/portfolio.spec.ts" time="6.94">
+<failure message="portfolio.spec.ts:270:9 should work on mobile devices" type="FAILURE">
+<![CDATA[  [chromium] › public/portfolio.spec.ts:270:9 › Public Portfolio › Responsive Design › should work on mobile devices 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('[data-testid="mobile-nav"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="mobile-nav"]')
+
+
+      281 |       // Open mobile menu
+      282 |       await page.click('[data-testid="mobile-menu-button"]')
+    > 283 |       await expect(page.locator('[data-testid="mobile-nav"]')).toBeVisible()
+          |                                                                ^
+      284 |       
+      285 |       // Test mobile navigation
+      286 |       await page.click('[data-testid="mobile-nav-about"]')
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:283:64
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-35758-ould-work-on-mobile-devices-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-35758-ould-work-on-mobile-devices-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-35758-ould-work-on-mobile-devices-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-35758-ould-work-on-mobile-devices-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-35758-ould-work-on-mobile-devices-chromium/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-35758-ould-work-on-mobile-devices-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Responsive Design › should work on tablet devices" classname="public/portfolio.spec.ts" time="1.735">
+</testcase>
+<testcase name="Public Portfolio › Performance › should load quickly" classname="public/portfolio.spec.ts" time="1.474">
+</testcase>
+<testcase name="Public Portfolio › Performance › should have good Core Web Vitals" classname="public/portfolio.spec.ts" time="5.759">
+</testcase>
+</testsuite>
+<testsuite name="public/portfolio.spec.ts" timestamp="2025-08-21T08:25:08.273Z" hostname="firefox" tests="17" failures="9" skipped="0" time="102.072" errors="0">
+<testcase name="Public Portfolio › Homepage › should display portfolio homepage correctly" classname="public/portfolio.spec.ts" time="3.462">
+</testcase>
+<testcase name="Public Portfolio › Homepage › should have proper SEO meta tags" classname="public/portfolio.spec.ts" time="4.018">
+<failure message="portfolio.spec.ts:25:9 should have proper SEO meta tags" type="FAILURE">
+<![CDATA[  [firefox] › public/portfolio.spec.ts:25:9 › Public Portfolio › Homepage › should have proper SEO meta tags 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Portfolio"
+    Received string:    "Create Next App"
+
+      28 |       // Check title
+      29 |       const title = await page.title()
+    > 30 |       expect(title).toContain('Portfolio')
+         |                     ^
+      31 |       expect(title.length).toBeGreaterThan(10)
+      32 |       expect(title.length).toBeLessThan(60)
+      33 |       
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:30:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-firefox/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-firefox/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-firefox/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Homepage › should be accessible" classname="public/portfolio.spec.ts" time="7.977">
+<failure message="portfolio.spec.ts:50:9 should be accessible" type="FAILURE">
+<![CDATA[  [firefox] › public/portfolio.spec.ts:50:9 › Public Portfolio › Homepage › should be accessible ───
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('h1')
+    Expected: 1
+    Received: 2
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" with timeout 5000ms
+      - waiting for locator('h1')
+        8 × locator resolved to 2 elements
+          - unexpected value "2"
+
+
+      53 |       // Check for proper heading hierarchy
+      54 |       const h1 = page.locator('h1')
+    > 55 |       await expect(h1).toHaveCount(1)
+         |                        ^
+      56 |       
+      57 |       // Check for alt text on images
+      58 |       const images = page.locator('img')
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:55:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-2f2ef-mepage-should-be-accessible-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-2f2ef-mepage-should-be-accessible-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-2f2ef-mepage-should-be-accessible-firefox/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-2f2ef-mepage-should-be-accessible-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-2f2ef-mepage-should-be-accessible-firefox/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-2f2ef-mepage-should-be-accessible-firefox/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Homepage › should have working navigation" classname="public/portfolio.spec.ts" time="6.773">
+</testcase>
+<testcase name="Public Portfolio › Homepage › should display contact form" classname="public/portfolio.spec.ts" time="3.942">
+</testcase>
+<testcase name="Public Portfolio › Contact Form › should submit contact form successfully" classname="public/portfolio.spec.ts" time="7.786">
+<failure message="portfolio.spec.ts:123:9 should submit contact form successfully" type="FAILURE">
+<![CDATA[  [firefox] › public/portfolio.spec.ts:123:9 › Public Portfolio › Contact Form › should submit contact form successfully 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('[data-testid="success-message"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="success-message"]')
+
+
+      131 |       
+      132 |       // Should show success message
+    > 133 |       await expect(page.locator('[data-testid="success-message"]')).toBeVisible()
+          |                                                                     ^
+      134 |       await expect(page.locator('[data-testid="success-message"]')).toContainText('Thank you for your message')
+      135 |       
+      136 |       // Form should be reset
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:133:69
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-f85f5-t-contact-form-successfully-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-f85f5-t-contact-form-successfully-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-f85f5-t-contact-form-successfully-firefox/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-f85f5-t-contact-form-successfully-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-f85f5-t-contact-form-successfully-firefox/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-f85f5-t-contact-form-successfully-firefox/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Contact Form › should validate required fields" classname="public/portfolio.spec.ts" time="8.739">
+<failure message="portfolio.spec.ts:142:9 should validate required fields" type="FAILURE">
+<![CDATA[  [firefox] › public/portfolio.spec.ts:142:9 › Public Portfolio › Contact Form › should validate required fields 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('[data-testid="name-error"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="name-error"]')
+
+
+      145 |       
+      146 |       // Should show validation errors
+    > 147 |       await expect(page.locator('[data-testid="name-error"]')).toBeVisible()
+          |                                                                ^
+      148 |       await expect(page.locator('[data-testid="email-error"]')).toBeVisible()
+      149 |       await expect(page.locator('[data-testid="message-error"]')).toBeVisible()
+      150 |       
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:147:64
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-5d41d-ld-validate-required-fields-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-5d41d-ld-validate-required-fields-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-5d41d-ld-validate-required-fields-firefox/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-5d41d-ld-validate-required-fields-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-5d41d-ld-validate-required-fields-firefox/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-5d41d-ld-validate-required-fields-firefox/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Contact Form › should validate email format" classname="public/portfolio.spec.ts" time="8.283">
+<failure message="portfolio.spec.ts:155:9 should validate email format" type="FAILURE">
+<![CDATA[  [firefox] › public/portfolio.spec.ts:155:9 › Public Portfolio › Contact Form › should validate email format 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('[data-testid="email-error"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="email-error"]')
+
+
+      162 |       
+      163 |       // Should show email validation error
+    > 164 |       await expect(page.locator('[data-testid="email-error"]')).toBeVisible()
+          |                                                                 ^
+      165 |       await expect(page.locator('[data-testid="email-error"]')).toContainText('valid email')
+      166 |     })
+      167 |
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:164:65
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-178b2-hould-validate-email-format-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-178b2-hould-validate-email-format-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-178b2-hould-validate-email-format-firefox/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-178b2-hould-validate-email-format-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-178b2-hould-validate-email-format-firefox/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-178b2-hould-validate-email-format-firefox/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Contact Form › should handle form submission errors" classname="public/portfolio.spec.ts" time="9.722">
+<failure message="portfolio.spec.ts:168:9 should handle form submission errors" type="FAILURE">
+<![CDATA[  [firefox] › public/portfolio.spec.ts:168:9 › Public Portfolio › Contact Form › should handle form submission errors 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('[data-testid="error-message"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="error-message"]')
+
+
+      183 |       
+      184 |       // Should show error message
+    > 185 |       await expect(page.locator('[data-testid="error-message"]')).toBeVisible()
+          |                                                                   ^
+      186 |       await expect(page.locator('[data-testid="error-message"]')).toContainText('error')
+      187 |     })
+      188 |
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:185:67
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-2532c-ndle-form-submission-errors-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-2532c-ndle-form-submission-errors-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-2532c-ndle-form-submission-errors-firefox/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-2532c-ndle-form-submission-errors-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-2532c-ndle-form-submission-errors-firefox/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-2532c-ndle-form-submission-errors-firefox/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Contact Form › should show loading state during submission" classname="public/portfolio.spec.ts" time="10.324">
+<failure message="portfolio.spec.ts:189:9 should show loading state during submission" type="FAILURE">
+<![CDATA[  [firefox] › public/portfolio.spec.ts:189:9 › Public Portfolio › Contact Form › should show loading state during submission 
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  locator('[data-testid="contact-submit"]')
+    Expected: disabled
+    Received: enabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeDisabled" with timeout 5000ms
+      - waiting for locator('[data-testid="contact-submit"]')
+        8 × locator resolved to <button type="submit" data-testid="contact-submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Send Message</button>
+          - unexpected value "enabled"
+
+
+      206 |       
+      207 |       // Should show loading state
+    > 208 |       await expect(page.locator('[data-testid="contact-submit"]')).toBeDisabled()
+          |                                                                    ^
+      209 |       await expect(page.locator('[data-testid="loading-spinner"]')).toBeVisible()
+      210 |     })
+      211 |   })
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:208:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-c2ff2-ing-state-during-submission-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-c2ff2-ing-state-during-submission-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-c2ff2-ing-state-during-submission-firefox/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-c2ff2-ing-state-during-submission-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-c2ff2-ing-state-during-submission-firefox/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-c2ff2-ing-state-during-submission-firefox/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Blog Section › should navigate to blog page" classname="public/portfolio.spec.ts" time="2.021">
+</testcase>
+<testcase name="Public Portfolio › Blog Section › should display blog posts" classname="public/portfolio.spec.ts" time="0.89">
+</testcase>
+<testcase name="Public Portfolio › Blog Section › should navigate to individual blog post" classname="public/portfolio.spec.ts" time="8.708">
+<failure message="portfolio.spec.ts:247:9 should navigate to individual blog post" type="FAILURE">
+<![CDATA[  [firefox] › public/portfolio.spec.ts:247:9 › Public Portfolio › Blog Section › should navigate to individual blog post 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('[data-testid="blog-post"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="blog-post"]')
+
+
+      259 |         
+      260 |         // Should display post content
+    > 261 |         await expect(page.locator('[data-testid="blog-post"]')).toBeVisible()
+          |                                                                 ^
+      262 |         await expect(page.locator('[data-testid="post-title"]')).toBeVisible()
+      263 |         await expect(page.locator('[data-testid="post-content"]')).toBeVisible()
+      264 |         await expect(page.locator('[data-testid="post-meta"]')).toBeVisible()
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:261:65
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-498f8-ate-to-individual-blog-post-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-498f8-ate-to-individual-blog-post-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-498f8-ate-to-individual-blog-post-firefox/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-498f8-ate-to-individual-blog-post-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-498f8-ate-to-individual-blog-post-firefox/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-498f8-ate-to-individual-blog-post-firefox/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Responsive Design › should work on mobile devices" classname="public/portfolio.spec.ts" time="8.121">
+<failure message="portfolio.spec.ts:270:9 should work on mobile devices" type="FAILURE">
+<![CDATA[  [firefox] › public/portfolio.spec.ts:270:9 › Public Portfolio › Responsive Design › should work on mobile devices 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('[data-testid="mobile-nav"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="mobile-nav"]')
+
+
+      281 |       // Open mobile menu
+      282 |       await page.click('[data-testid="mobile-menu-button"]')
+    > 283 |       await expect(page.locator('[data-testid="mobile-nav"]')).toBeVisible()
+          |                                                                ^
+      284 |       
+      285 |       // Test mobile navigation
+      286 |       await page.click('[data-testid="mobile-nav-about"]')
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:283:64
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-35758-ould-work-on-mobile-devices-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-35758-ould-work-on-mobile-devices-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-35758-ould-work-on-mobile-devices-firefox/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-35758-ould-work-on-mobile-devices-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-35758-ould-work-on-mobile-devices-firefox/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-35758-ould-work-on-mobile-devices-firefox/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Responsive Design › should work on tablet devices" classname="public/portfolio.spec.ts" time="1.261">
+</testcase>
+<testcase name="Public Portfolio › Performance › should load quickly" classname="public/portfolio.spec.ts" time="3.265">
+</testcase>
+<testcase name="Public Portfolio › Performance › should have good Core Web Vitals" classname="public/portfolio.spec.ts" time="6.78">
+</testcase>
+</testsuite>
+<testsuite name="public/portfolio.spec.ts" timestamp="2025-08-21T08:25:08.273Z" hostname="webkit" tests="17" failures="9" skipped="0" time="74.096" errors="0">
+<testcase name="Public Portfolio › Homepage › should display portfolio homepage correctly" classname="public/portfolio.spec.ts" time="2.28">
+</testcase>
+<testcase name="Public Portfolio › Homepage › should have proper SEO meta tags" classname="public/portfolio.spec.ts" time="2.224">
+<failure message="portfolio.spec.ts:25:9 should have proper SEO meta tags" type="FAILURE">
+<![CDATA[  [webkit] › public/portfolio.spec.ts:25:9 › Public Portfolio › Homepage › should have proper SEO meta tags 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Portfolio"
+    Received string:    "Create Next App"
+
+      28 |       // Check title
+      29 |       const title = await page.title()
+    > 30 |       expect(title).toContain('Portfolio')
+         |                     ^
+      31 |       expect(title.length).toBeGreaterThan(10)
+      32 |       expect(title.length).toBeLessThan(60)
+      33 |       
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:30:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-webkit/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-webkit/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Homepage › should be accessible" classname="public/portfolio.spec.ts" time="7.104">
+<failure message="portfolio.spec.ts:50:9 should be accessible" type="FAILURE">
+<![CDATA[  [webkit] › public/portfolio.spec.ts:50:9 › Public Portfolio › Homepage › should be accessible ────
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('h1')
+    Expected: 1
+    Received: 2
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" with timeout 5000ms
+      - waiting for locator('h1')
+        9 × locator resolved to 2 elements
+          - unexpected value "2"
+
+
+      53 |       // Check for proper heading hierarchy
+      54 |       const h1 = page.locator('h1')
+    > 55 |       await expect(h1).toHaveCount(1)
+         |                        ^
+      56 |       
+      57 |       // Check for alt text on images
+      58 |       const images = page.locator('img')
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:55:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-2f2ef-mepage-should-be-accessible-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-2f2ef-mepage-should-be-accessible-webkit/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-2f2ef-mepage-should-be-accessible-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-2f2ef-mepage-should-be-accessible-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-2f2ef-mepage-should-be-accessible-webkit/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-2f2ef-mepage-should-be-accessible-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Homepage › should have working navigation" classname="public/portfolio.spec.ts" time="4.331">
+</testcase>
+<testcase name="Public Portfolio › Homepage › should display contact form" classname="public/portfolio.spec.ts" time="1.9">
+</testcase>
+<testcase name="Public Portfolio › Contact Form › should submit contact form successfully" classname="public/portfolio.spec.ts" time="7.239">
+<failure message="portfolio.spec.ts:123:9 should submit contact form successfully" type="FAILURE">
+<![CDATA[  [webkit] › public/portfolio.spec.ts:123:9 › Public Portfolio › Contact Form › should submit contact form successfully 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('[data-testid="success-message"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="success-message"]')
+
+
+      131 |       
+      132 |       // Should show success message
+    > 133 |       await expect(page.locator('[data-testid="success-message"]')).toBeVisible()
+          |                                                                     ^
+      134 |       await expect(page.locator('[data-testid="success-message"]')).toContainText('Thank you for your message')
+      135 |       
+      136 |       // Form should be reset
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:133:69
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-f85f5-t-contact-form-successfully-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-f85f5-t-contact-form-successfully-webkit/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-f85f5-t-contact-form-successfully-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-f85f5-t-contact-form-successfully-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-f85f5-t-contact-form-successfully-webkit/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-f85f5-t-contact-form-successfully-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Contact Form › should validate required fields" classname="public/portfolio.spec.ts" time="6.65">
+<failure message="portfolio.spec.ts:142:9 should validate required fields" type="FAILURE">
+<![CDATA[  [webkit] › public/portfolio.spec.ts:142:9 › Public Portfolio › Contact Form › should validate required fields 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('[data-testid="name-error"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="name-error"]')
+
+
+      145 |       
+      146 |       // Should show validation errors
+    > 147 |       await expect(page.locator('[data-testid="name-error"]')).toBeVisible()
+          |                                                                ^
+      148 |       await expect(page.locator('[data-testid="email-error"]')).toBeVisible()
+      149 |       await expect(page.locator('[data-testid="message-error"]')).toBeVisible()
+      150 |       
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:147:64
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-5d41d-ld-validate-required-fields-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-5d41d-ld-validate-required-fields-webkit/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-5d41d-ld-validate-required-fields-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-5d41d-ld-validate-required-fields-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-5d41d-ld-validate-required-fields-webkit/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-5d41d-ld-validate-required-fields-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Contact Form › should validate email format" classname="public/portfolio.spec.ts" time="6.709">
+<failure message="portfolio.spec.ts:155:9 should validate email format" type="FAILURE">
+<![CDATA[  [webkit] › public/portfolio.spec.ts:155:9 › Public Portfolio › Contact Form › should validate email format 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('[data-testid="email-error"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="email-error"]')
+
+
+      162 |       
+      163 |       // Should show email validation error
+    > 164 |       await expect(page.locator('[data-testid="email-error"]')).toBeVisible()
+          |                                                                 ^
+      165 |       await expect(page.locator('[data-testid="email-error"]')).toContainText('valid email')
+      166 |     })
+      167 |
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:164:65
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-178b2-hould-validate-email-format-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-178b2-hould-validate-email-format-webkit/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-178b2-hould-validate-email-format-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-178b2-hould-validate-email-format-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-178b2-hould-validate-email-format-webkit/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-178b2-hould-validate-email-format-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Contact Form › should handle form submission errors" classname="public/portfolio.spec.ts" time="7.155">
+<failure message="portfolio.spec.ts:168:9 should handle form submission errors" type="FAILURE">
+<![CDATA[  [webkit] › public/portfolio.spec.ts:168:9 › Public Portfolio › Contact Form › should handle form submission errors 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('[data-testid="error-message"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="error-message"]')
+
+
+      183 |       
+      184 |       // Should show error message
+    > 185 |       await expect(page.locator('[data-testid="error-message"]')).toBeVisible()
+          |                                                                   ^
+      186 |       await expect(page.locator('[data-testid="error-message"]')).toContainText('error')
+      187 |     })
+      188 |
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:185:67
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-2532c-ndle-form-submission-errors-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-2532c-ndle-form-submission-errors-webkit/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-2532c-ndle-form-submission-errors-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-2532c-ndle-form-submission-errors-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-2532c-ndle-form-submission-errors-webkit/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-2532c-ndle-form-submission-errors-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Contact Form › should show loading state during submission" classname="public/portfolio.spec.ts" time="7.082">
+<failure message="portfolio.spec.ts:189:9 should show loading state during submission" type="FAILURE">
+<![CDATA[  [webkit] › public/portfolio.spec.ts:189:9 › Public Portfolio › Contact Form › should show loading state during submission 
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  locator('[data-testid="contact-submit"]')
+    Expected: disabled
+    Received: enabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeDisabled" with timeout 5000ms
+      - waiting for locator('[data-testid="contact-submit"]')
+        9 × locator resolved to <button type="submit" data-testid="contact-submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Send Message</button>
+          - unexpected value "enabled"
+
+
+      206 |       
+      207 |       // Should show loading state
+    > 208 |       await expect(page.locator('[data-testid="contact-submit"]')).toBeDisabled()
+          |                                                                    ^
+      209 |       await expect(page.locator('[data-testid="loading-spinner"]')).toBeVisible()
+      210 |     })
+      211 |   })
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:208:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-c2ff2-ing-state-during-submission-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-c2ff2-ing-state-during-submission-webkit/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-c2ff2-ing-state-during-submission-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-c2ff2-ing-state-during-submission-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-c2ff2-ing-state-during-submission-webkit/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-c2ff2-ing-state-during-submission-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Blog Section › should navigate to blog page" classname="public/portfolio.spec.ts" time="1.253">
+</testcase>
+<testcase name="Public Portfolio › Blog Section › should display blog posts" classname="public/portfolio.spec.ts" time="0.824">
+</testcase>
+<testcase name="Public Portfolio › Blog Section › should navigate to individual blog post" classname="public/portfolio.spec.ts" time="5.96">
+<failure message="portfolio.spec.ts:247:9 should navigate to individual blog post" type="FAILURE">
+<![CDATA[  [webkit] › public/portfolio.spec.ts:247:9 › Public Portfolio › Blog Section › should navigate to individual blog post 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('[data-testid="blog-post"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="blog-post"]')
+
+
+      259 |         
+      260 |         // Should display post content
+    > 261 |         await expect(page.locator('[data-testid="blog-post"]')).toBeVisible()
+          |                                                                 ^
+      262 |         await expect(page.locator('[data-testid="post-title"]')).toBeVisible()
+      263 |         await expect(page.locator('[data-testid="post-content"]')).toBeVisible()
+      264 |         await expect(page.locator('[data-testid="post-meta"]')).toBeVisible()
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:261:65
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-498f8-ate-to-individual-blog-post-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-498f8-ate-to-individual-blog-post-webkit/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-498f8-ate-to-individual-blog-post-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-498f8-ate-to-individual-blog-post-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-498f8-ate-to-individual-blog-post-webkit/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-498f8-ate-to-individual-blog-post-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Responsive Design › should work on mobile devices" classname="public/portfolio.spec.ts" time="5.623">
+<failure message="portfolio.spec.ts:270:9 should work on mobile devices" type="FAILURE">
+<![CDATA[  [webkit] › public/portfolio.spec.ts:270:9 › Public Portfolio › Responsive Design › should work on mobile devices 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('[data-testid="mobile-nav"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="mobile-nav"]')
+
+
+      281 |       // Open mobile menu
+      282 |       await page.click('[data-testid="mobile-menu-button"]')
+    > 283 |       await expect(page.locator('[data-testid="mobile-nav"]')).toBeVisible()
+          |                                                                ^
+      284 |       
+      285 |       // Test mobile navigation
+      286 |       await page.click('[data-testid="mobile-nav-about"]')
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:283:64
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-35758-ould-work-on-mobile-devices-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-35758-ould-work-on-mobile-devices-webkit/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-35758-ould-work-on-mobile-devices-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-35758-ould-work-on-mobile-devices-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-35758-ould-work-on-mobile-devices-webkit/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-35758-ould-work-on-mobile-devices-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Responsive Design › should work on tablet devices" classname="public/portfolio.spec.ts" time="0.91">
+</testcase>
+<testcase name="Public Portfolio › Performance › should load quickly" classname="public/portfolio.spec.ts" time="1.205">
+</testcase>
+<testcase name="Public Portfolio › Performance › should have good Core Web Vitals" classname="public/portfolio.spec.ts" time="5.647">
+</testcase>
+</testsuite>
+<testsuite name="public/portfolio.spec.ts" timestamp="2025-08-21T08:25:08.273Z" hostname="Mobile Chrome" tests="17" failures="13" skipped="0" time="127.084" errors="0">
+<testcase name="Public Portfolio › Homepage › should display portfolio homepage correctly" classname="public/portfolio.spec.ts" time="6.284">
+<failure message="portfolio.spec.ts:5:9 should display portfolio homepage correctly" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › public/portfolio.spec.ts:5:9 › Public Portfolio › Homepage › should display portfolio homepage correctly 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('[data-testid="nav-about"]')
+    Expected: visible
+    Received: hidden
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="nav-about"]')
+        9 × locator resolved to <a href="#about" data-testid="nav-about" class="text-gray-700 hover:text-gray-900">About</a>
+          - unexpected value "hidden"
+
+
+      16 |       // Check navigation
+      17 |       await expect(page.locator('[data-testid="main-nav"]')).toBeVisible()
+    > 18 |       await expect(page.locator('[data-testid="nav-about"]')).toBeVisible()
+         |                                                               ^
+      19 |       await expect(page.locator('[data-testid="nav-experience"]')).toBeVisible()
+      20 |       await expect(page.locator('[data-testid="nav-projects"]')).toBeVisible()
+      21 |       await expect(page.locator('[data-testid="nav-blog"]')).toBeVisible()
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:18:63
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-c7ca4-ortfolio-homepage-correctly-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-c7ca4-ortfolio-homepage-correctly-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-c7ca4-ortfolio-homepage-correctly-Mobile-Chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-c7ca4-ortfolio-homepage-correctly-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-c7ca4-ortfolio-homepage-correctly-Mobile-Chrome/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-c7ca4-ortfolio-homepage-correctly-Mobile-Chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Homepage › should have proper SEO meta tags" classname="public/portfolio.spec.ts" time="1.213">
+<failure message="portfolio.spec.ts:25:9 should have proper SEO meta tags" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › public/portfolio.spec.ts:25:9 › Public Portfolio › Homepage › should have proper SEO meta tags 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Portfolio"
+    Received string:    "Create Next App"
+
+      28 |       // Check title
+      29 |       const title = await page.title()
+    > 30 |       expect(title).toContain('Portfolio')
+         |                     ^
+      31 |       expect(title.length).toBeGreaterThan(10)
+      32 |       expect(title.length).toBeLessThan(60)
+      33 |       
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:30:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-Mobile-Chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-Mobile-Chrome/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-Mobile-Chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Homepage › should be accessible" classname="public/portfolio.spec.ts" time="5.971">
+<failure message="portfolio.spec.ts:50:9 should be accessible" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › public/portfolio.spec.ts:50:9 › Public Portfolio › Homepage › should be accessible 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('h1')
+    Expected: 1
+    Received: 2
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" with timeout 5000ms
+      - waiting for locator('h1')
+        9 × locator resolved to 2 elements
+          - unexpected value "2"
+
+
+      53 |       // Check for proper heading hierarchy
+      54 |       const h1 = page.locator('h1')
+    > 55 |       await expect(h1).toHaveCount(1)
+         |                        ^
+      56 |       
+      57 |       // Check for alt text on images
+      58 |       const images = page.locator('img')
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:55:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-2f2ef-mepage-should-be-accessible-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-2f2ef-mepage-should-be-accessible-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-2f2ef-mepage-should-be-accessible-Mobile-Chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-2f2ef-mepage-should-be-accessible-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-2f2ef-mepage-should-be-accessible-Mobile-Chrome/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-2f2ef-mepage-should-be-accessible-Mobile-Chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Homepage › should have working navigation" classname="public/portfolio.spec.ts" time="10.849">
+<failure message="portfolio.spec.ts:81:9 should have working navigation" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › public/portfolio.spec.ts:81:9 › Public Portfolio › Homepage › should have working navigation 
+
+    TimeoutError: page.click: Timeout 10000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="nav-about"]')
+        - locator resolved to <a href="#about" data-testid="nav-about" class="text-gray-700 hover:text-gray-900">About</a>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+          - waiting 100ms
+        19 × waiting for element to be visible, enabled and stable
+           - element is not visible
+         - retrying click action
+           - waiting 500ms
+
+
+      83 |       
+      84 |       // Test smooth scrolling navigation
+    > 85 |       await page.click('[data-testid="nav-about"]')
+         |                  ^
+      86 |       await page.waitForTimeout(1000) // Wait for smooth scroll
+      87 |       
+      88 |       // Check if about section is in view
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:85:18
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-99fe2-uld-have-working-navigation-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-99fe2-uld-have-working-navigation-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-99fe2-uld-have-working-navigation-Mobile-Chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-99fe2-uld-have-working-navigation-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-99fe2-uld-have-working-navigation-Mobile-Chrome/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-99fe2-uld-have-working-navigation-Mobile-Chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Homepage › should display contact form" classname="public/portfolio.spec.ts" time="11.109">
+<failure message="portfolio.spec.ts:100:9 should display contact form" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › public/portfolio.spec.ts:100:9 › Public Portfolio › Homepage › should display contact form 
+
+    TimeoutError: page.click: Timeout 10000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="nav-contact"]')
+        - locator resolved to <a href="#contact" data-testid="nav-contact" class="text-gray-700 hover:text-gray-900">Contact</a>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+          - waiting 100ms
+        19 × waiting for element to be visible, enabled and stable
+           - element is not visible
+         - retrying click action
+           - waiting 500ms
+
+
+      102 |       
+      103 |       // Scroll to contact section
+    > 104 |       await page.click('[data-testid="nav-contact"]')
+          |                  ^
+      105 |       await page.waitForTimeout(1000)
+      106 |       
+      107 |       // Check contact form elements
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:104:18
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-fc2fd-should-display-contact-form-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-fc2fd-should-display-contact-form-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-fc2fd-should-display-contact-form-Mobile-Chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-fc2fd-should-display-contact-form-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-fc2fd-should-display-contact-form-Mobile-Chrome/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-fc2fd-should-display-contact-form-Mobile-Chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Contact Form › should submit contact form successfully" classname="public/portfolio.spec.ts" time="11.199">
+<failure message="portfolio.spec.ts:123:9 should submit contact form successfully" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › public/portfolio.spec.ts:123:9 › Public Portfolio › Contact Form › should submit contact form successfully 
+
+    TimeoutError: page.click: Timeout 10000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="nav-contact"]')
+        - locator resolved to <a href="#contact" data-testid="nav-contact" class="text-gray-700 hover:text-gray-900">Contact</a>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+          - waiting 100ms
+        19 × waiting for element to be visible, enabled and stable
+           - element is not visible
+         - retrying click action
+           - waiting 500ms
+
+
+      117 |     test.beforeEach(async ({ page }) => {
+      118 |       await page.goto('/')
+    > 119 |       await page.click('[data-testid="nav-contact"]')
+          |                  ^
+      120 |       await page.waitForTimeout(1000)
+      121 |     })
+      122 |
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:119:18
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-f85f5-t-contact-form-successfully-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-f85f5-t-contact-form-successfully-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-f85f5-t-contact-form-successfully-Mobile-Chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-f85f5-t-contact-form-successfully-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-f85f5-t-contact-form-successfully-Mobile-Chrome/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-f85f5-t-contact-form-successfully-Mobile-Chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Contact Form › should validate required fields" classname="public/portfolio.spec.ts" time="11.145">
+<failure message="portfolio.spec.ts:142:9 should validate required fields" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › public/portfolio.spec.ts:142:9 › Public Portfolio › Contact Form › should validate required fields 
+
+    TimeoutError: page.click: Timeout 10000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="nav-contact"]')
+        - locator resolved to <a href="#contact" data-testid="nav-contact" class="text-gray-700 hover:text-gray-900">Contact</a>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+          - waiting 100ms
+        19 × waiting for element to be visible, enabled and stable
+           - element is not visible
+         - retrying click action
+           - waiting 500ms
+
+
+      117 |     test.beforeEach(async ({ page }) => {
+      118 |       await page.goto('/')
+    > 119 |       await page.click('[data-testid="nav-contact"]')
+          |                  ^
+      120 |       await page.waitForTimeout(1000)
+      121 |     })
+      122 |
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:119:18
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-5d41d-ld-validate-required-fields-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-5d41d-ld-validate-required-fields-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-5d41d-ld-validate-required-fields-Mobile-Chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-5d41d-ld-validate-required-fields-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-5d41d-ld-validate-required-fields-Mobile-Chrome/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-5d41d-ld-validate-required-fields-Mobile-Chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Contact Form › should validate email format" classname="public/portfolio.spec.ts" time="11.141">
+<failure message="portfolio.spec.ts:155:9 should validate email format" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › public/portfolio.spec.ts:155:9 › Public Portfolio › Contact Form › should validate email format 
+
+    TimeoutError: page.click: Timeout 10000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="nav-contact"]')
+        - locator resolved to <a href="#contact" data-testid="nav-contact" class="text-gray-700 hover:text-gray-900">Contact</a>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+          - waiting 100ms
+        19 × waiting for element to be visible, enabled and stable
+           - element is not visible
+         - retrying click action
+           - waiting 500ms
+
+
+      117 |     test.beforeEach(async ({ page }) => {
+      118 |       await page.goto('/')
+    > 119 |       await page.click('[data-testid="nav-contact"]')
+          |                  ^
+      120 |       await page.waitForTimeout(1000)
+      121 |     })
+      122 |
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:119:18
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-178b2-hould-validate-email-format-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-178b2-hould-validate-email-format-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-178b2-hould-validate-email-format-Mobile-Chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-178b2-hould-validate-email-format-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-178b2-hould-validate-email-format-Mobile-Chrome/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-178b2-hould-validate-email-format-Mobile-Chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Contact Form › should handle form submission errors" classname="public/portfolio.spec.ts" time="11.015">
+<failure message="portfolio.spec.ts:168:9 should handle form submission errors" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › public/portfolio.spec.ts:168:9 › Public Portfolio › Contact Form › should handle form submission errors 
+
+    TimeoutError: page.click: Timeout 10000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="nav-contact"]')
+        - locator resolved to <a href="#contact" data-testid="nav-contact" class="text-gray-700 hover:text-gray-900">Contact</a>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+          - waiting 100ms
+        19 × waiting for element to be visible, enabled and stable
+           - element is not visible
+         - retrying click action
+           - waiting 500ms
+
+
+      117 |     test.beforeEach(async ({ page }) => {
+      118 |       await page.goto('/')
+    > 119 |       await page.click('[data-testid="nav-contact"]')
+          |                  ^
+      120 |       await page.waitForTimeout(1000)
+      121 |     })
+      122 |
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:119:18
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-2532c-ndle-form-submission-errors-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-2532c-ndle-form-submission-errors-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-2532c-ndle-form-submission-errors-Mobile-Chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-2532c-ndle-form-submission-errors-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-2532c-ndle-form-submission-errors-Mobile-Chrome/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-2532c-ndle-form-submission-errors-Mobile-Chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Contact Form › should show loading state during submission" classname="public/portfolio.spec.ts" time="11.198">
+<failure message="portfolio.spec.ts:189:9 should show loading state during submission" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › public/portfolio.spec.ts:189:9 › Public Portfolio › Contact Form › should show loading state during submission 
+
+    TimeoutError: page.click: Timeout 10000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="nav-contact"]')
+        - locator resolved to <a href="#contact" data-testid="nav-contact" class="text-gray-700 hover:text-gray-900">Contact</a>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+          - waiting 100ms
+        19 × waiting for element to be visible, enabled and stable
+           - element is not visible
+         - retrying click action
+           - waiting 500ms
+
+
+      117 |     test.beforeEach(async ({ page }) => {
+      118 |       await page.goto('/')
+    > 119 |       await page.click('[data-testid="nav-contact"]')
+          |                  ^
+      120 |       await page.waitForTimeout(1000)
+      121 |     })
+      122 |
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:119:18
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-c2ff2-ing-state-during-submission-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-c2ff2-ing-state-during-submission-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-c2ff2-ing-state-during-submission-Mobile-Chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-c2ff2-ing-state-during-submission-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-c2ff2-ing-state-during-submission-Mobile-Chrome/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-c2ff2-ing-state-during-submission-Mobile-Chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Blog Section › should navigate to blog page" classname="public/portfolio.spec.ts" time="10.955">
+<failure message="portfolio.spec.ts:214:9 should navigate to blog page" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › public/portfolio.spec.ts:214:9 › Public Portfolio › Blog Section › should navigate to blog page 
+
+    TimeoutError: page.click: Timeout 10000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="nav-blog"]')
+        - locator resolved to <a href="/blog" data-testid="nav-blog" class="text-gray-700 hover:text-gray-900">Blog</a>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+          - waiting 100ms
+        19 × waiting for element to be visible, enabled and stable
+           - element is not visible
+         - retrying click action
+           - waiting 500ms
+
+
+      215 |       await page.goto('/')
+      216 |       
+    > 217 |       await page.click('[data-testid="nav-blog"]')
+          |                  ^
+      218 |       await page.waitForURL('/blog')
+      219 |       
+      220 |       // Should display blog page
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:217:18
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-b4edc-hould-navigate-to-blog-page-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-b4edc-hould-navigate-to-blog-page-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-b4edc-hould-navigate-to-blog-page-Mobile-Chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-b4edc-hould-navigate-to-blog-page-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-b4edc-hould-navigate-to-blog-page-Mobile-Chrome/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-b4edc-hould-navigate-to-blog-page-Mobile-Chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Blog Section › should display blog posts" classname="public/portfolio.spec.ts" time="1.475">
+</testcase>
+<testcase name="Public Portfolio › Blog Section › should navigate to individual blog post" classname="public/portfolio.spec.ts" time="6.045">
+<failure message="portfolio.spec.ts:247:9 should navigate to individual blog post" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › public/portfolio.spec.ts:247:9 › Public Portfolio › Blog Section › should navigate to individual blog post 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('[data-testid="blog-post"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="blog-post"]')
+
+
+      259 |         
+      260 |         // Should display post content
+    > 261 |         await expect(page.locator('[data-testid="blog-post"]')).toBeVisible()
+          |                                                                 ^
+      262 |         await expect(page.locator('[data-testid="post-title"]')).toBeVisible()
+      263 |         await expect(page.locator('[data-testid="post-content"]')).toBeVisible()
+      264 |         await expect(page.locator('[data-testid="post-meta"]')).toBeVisible()
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:261:65
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-498f8-ate-to-individual-blog-post-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-498f8-ate-to-individual-blog-post-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-498f8-ate-to-individual-blog-post-Mobile-Chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-498f8-ate-to-individual-blog-post-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-498f8-ate-to-individual-blog-post-Mobile-Chrome/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-498f8-ate-to-individual-blog-post-Mobile-Chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Responsive Design › should work on mobile devices" classname="public/portfolio.spec.ts" time="6.927">
+<failure message="portfolio.spec.ts:270:9 should work on mobile devices" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › public/portfolio.spec.ts:270:9 › Public Portfolio › Responsive Design › should work on mobile devices 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('[data-testid="mobile-nav"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="mobile-nav"]')
+
+
+      281 |       // Open mobile menu
+      282 |       await page.click('[data-testid="mobile-menu-button"]')
+    > 283 |       await expect(page.locator('[data-testid="mobile-nav"]')).toBeVisible()
+          |                                                                ^
+      284 |       
+      285 |       // Test mobile navigation
+      286 |       await page.click('[data-testid="mobile-nav-about"]')
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:283:64
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-35758-ould-work-on-mobile-devices-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-35758-ould-work-on-mobile-devices-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-35758-ould-work-on-mobile-devices-Mobile-Chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-35758-ould-work-on-mobile-devices-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-35758-ould-work-on-mobile-devices-Mobile-Chrome/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-35758-ould-work-on-mobile-devices-Mobile-Chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Responsive Design › should work on tablet devices" classname="public/portfolio.spec.ts" time="1.515">
+</testcase>
+<testcase name="Public Portfolio › Performance › should load quickly" classname="public/portfolio.spec.ts" time="2.363">
+</testcase>
+<testcase name="Public Portfolio › Performance › should have good Core Web Vitals" classname="public/portfolio.spec.ts" time="6.68">
+</testcase>
+</testsuite>
+<testsuite name="public/portfolio.spec.ts" timestamp="2025-08-21T08:25:08.273Z" hostname="Mobile Safari" tests="17" failures="2" skipped="15" time="24.704" errors="0">
+<testcase name="Public Portfolio › Homepage › should display portfolio homepage correctly" classname="public/portfolio.spec.ts" time="6.222">
+<failure message="portfolio.spec.ts:5:9 should display portfolio homepage correctly" type="FAILURE">
+<![CDATA[  [Mobile Safari] › public/portfolio.spec.ts:5:9 › Public Portfolio › Homepage › should display portfolio homepage correctly 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('[data-testid="nav-about"]')
+    Expected: visible
+    Received: hidden
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[data-testid="nav-about"]')
+        9 × locator resolved to <a href="#about" data-testid="nav-about" class="text-gray-700 hover:text-gray-900">About</a>
+          - unexpected value "hidden"
+
+
+      16 |       // Check navigation
+      17 |       await expect(page.locator('[data-testid="main-nav"]')).toBeVisible()
+    > 18 |       await expect(page.locator('[data-testid="nav-about"]')).toBeVisible()
+         |                                                               ^
+      19 |       await expect(page.locator('[data-testid="nav-experience"]')).toBeVisible()
+      20 |       await expect(page.locator('[data-testid="nav-projects"]')).toBeVisible()
+      21 |       await expect(page.locator('[data-testid="nav-blog"]')).toBeVisible()
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:18:63
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-c7ca4-ortfolio-homepage-correctly-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-c7ca4-ortfolio-homepage-correctly-Mobile-Safari/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-c7ca4-ortfolio-homepage-correctly-Mobile-Safari/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-c7ca4-ortfolio-homepage-correctly-Mobile-Safari/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-c7ca4-ortfolio-homepage-correctly-Mobile-Safari/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-c7ca4-ortfolio-homepage-correctly-Mobile-Safari/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Homepage › should have proper SEO meta tags" classname="public/portfolio.spec.ts" time="1.209">
+<failure message="portfolio.spec.ts:25:9 should have proper SEO meta tags" type="FAILURE">
+<![CDATA[  [Mobile Safari] › public/portfolio.spec.ts:25:9 › Public Portfolio › Homepage › should have proper SEO meta tags 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "Portfolio"
+    Received string:    "Create Next App"
+
+      28 |       // Check title
+      29 |       const title = await page.title()
+    > 30 |       expect(title).toContain('Portfolio')
+         |                     ^
+      31 |       expect(title.length).toBeGreaterThan(10)
+      32 |       expect(title.length).toBeLessThan(60)
+      33 |       
+        at /Users/ssivared/AdminSetup/portfolio-cms/e2e/public/portfolio.spec.ts:30:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-Mobile-Safari/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-Mobile-Safari/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-Mobile-Safari/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-Mobile-Safari/video.webm]]
+
+[[ATTACHMENT|../test-results/public-portfolio-Public-Po-62601-d-have-proper-SEO-meta-tags-Mobile-Safari/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Public Portfolio › Homepage › should be accessible" classname="public/portfolio.spec.ts" time="5.785">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Public Portfolio › Homepage › should have working navigation" classname="public/portfolio.spec.ts" time="5.409">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Public Portfolio › Homepage › should display contact form" classname="public/portfolio.spec.ts" time="3.524">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Public Portfolio › Contact Form › should submit contact form successfully" classname="public/portfolio.spec.ts" time="1.465">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Public Portfolio › Contact Form › should validate required fields" classname="public/portfolio.spec.ts" time="1.09">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Public Portfolio › Contact Form › should validate email format" classname="public/portfolio.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Public Portfolio › Contact Form › should handle form submission errors" classname="public/portfolio.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Public Portfolio › Contact Form › should show loading state during submission" classname="public/portfolio.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Public Portfolio › Blog Section › should navigate to blog page" classname="public/portfolio.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Public Portfolio › Blog Section › should display blog posts" classname="public/portfolio.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Public Portfolio › Blog Section › should navigate to individual blog post" classname="public/portfolio.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Public Portfolio › Responsive Design › should work on mobile devices" classname="public/portfolio.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Public Portfolio › Responsive Design › should work on tablet devices" classname="public/portfolio.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Public Portfolio › Performance › should load quickly" classname="public/portfolio.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Public Portfolio › Performance › should have good Core Web Vitals" classname="public/portfolio.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+</testsuites>
