@@ -44,6 +44,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.17.2",
     "next": "15.5.0",
+    "openai": "^5.15.0",
     "ra-data-json-server": "^5.10.1",
     "react": "19.1.0",
     "react-admin": "^5.10.1",
