@@ -105,7 +105,10 @@ export default function ContentManagement() {
       name: '',
       title: '',
       bio: '',
-      profileImage: ''
+      profileImage: '',
+      email: '',
+      phone: '',
+      location: ''
     },
     summary: '',
     technicalSkills: [],
@@ -263,25 +266,47 @@ export default function ContentManagement() {
   const addSkill = (category: 'technical' | 'soft' | 'tools') => {
     const skill = newSkill[category].trim()
     if (skill) {
-      setContent(prev => ({
-        ...prev,
-        skills: {
-          ...prev.skills,
-          [category]: [...prev.skills[category], skill]
+      setContent(prev => {
+        if (category === 'technical') {
+          // For technical skills, add to technicalSkills array
+          const newTechnicalSkill: TechnicalSkillCategory = {
+            id: Date.now().toString(),
+            name: skill,
+            skills: [],
+            level: 'intermediate'
+          }
+          return {
+            ...prev,
+            technicalSkills: [...prev.technicalSkills, newTechnicalSkill]
+          }
+        } else if (category === 'soft') {
+          // For soft skills, add to softSkills array
+          return {
+            ...prev,
+            softSkills: [...prev.softSkills, skill]
+          }
         }
-      }))
+        return prev
+      })
       setNewSkill(prev => ({ ...prev, [category]: '' }))
     }
   }
 
   const removeSkill = (category: 'technical' | 'soft' | 'tools', index: number) => {
-    setContent(prev => ({
-      ...prev,
-      skills: {
-        ...prev.skills,
-        [category]: prev.skills[category].filter((_, i) => i !== index)
+    setContent(prev => {
+      if (category === 'technical') {
+        return {
+          ...prev,
+          technicalSkills: prev.technicalSkills.filter((_, i) => i !== index)
+        }
+      } else if (category === 'soft') {
+        return {
+          ...prev,
+          softSkills: prev.softSkills.filter((_, i) => i !== index)
+        }
       }
-    }))
+      return prev
+    })
   }
 
   // Experience management
@@ -518,7 +543,7 @@ export default function ContentManagement() {
               <input
                 id="personal-name"
                 type="text"
-                value={content.personalInfo.name}
+                value={content.personalInfo?.name || ''}
                 onChange={(e) => handlePersonalInfoChange('name', e.target.value)}
                 className={`w-full px-3 py-2 bg-gray-800 border text-white rounded-md focus:outline-none focus:ring-2 focus:border-transparent ${
                   getFieldError('personalInfo.name')
@@ -536,7 +561,7 @@ export default function ContentManagement() {
               <input
                 id="personal-title"
                 type="text"
-                value={content.personalInfo.title}
+                value={content.personalInfo?.title || ''}
                 onChange={(e) => handlePersonalInfoChange('title', e.target.value)}
                 className={`w-full px-3 py-2 bg-gray-800 border text-white rounded-md focus:outline-none focus:ring-2 focus:border-transparent ${
                   getFieldError('personalInfo.title')
@@ -598,7 +623,7 @@ export default function ContentManagement() {
               <textarea
                 id="personal-bio"
                 rows={4}
-                value={content.personalInfo.bio}
+                value={content.personalInfo?.bio || ''}
                 onChange={(e) => handlePersonalInfoChange('bio', e.target.value)}
                 className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
                   getFieldError('personalInfo.bio')
