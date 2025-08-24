@@ -17,7 +17,10 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   const pathname = usePathname()
 
   useEffect(() => {
-    // Check authentication with protection against multiple redirects
+    // TEMPORARILY DISABLED - Authentication check disabled to stop redirect loop
+    console.log('AdminLayout: Authentication check DISABLED')
+    // TODO: Re-enable after fixing redirect loop
+    /*
     if (isRedirecting) return
 
     const checkAuth = async () => {
@@ -25,7 +28,6 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
       if (!accessToken) {
         console.log('AdminLayout: No access token found, redirecting to login')
         setIsRedirecting(true)
-        // Add delay to prevent rapid redirects
         setTimeout(() => {
           router.push('/admin/login')
         }, 500)
@@ -33,6 +35,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     }
 
     checkAuth()
+    */
   }, [router, isRedirecting])
 
   const handleLogout = async () => {

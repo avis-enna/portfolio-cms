@@ -196,6 +196,9 @@ export default function ContentManagement() {
   const loadContent = async () => {
     try {
       const accessToken = localStorage.getItem('accessToken')
+      // TEMPORARILY DISABLED - Authentication check disabled to stop redirect loop
+      console.log('ContentPage: Authentication check DISABLED')
+      /*
       if (!accessToken && !isRedirecting) {
         console.log('ContentPage: No access token found, redirecting to login')
         setIsRedirecting(true)
@@ -204,6 +207,7 @@ export default function ContentManagement() {
         }, 500)
         return
       }
+      */
 
       const response = await fetch('/api/admin/content', {
         headers: {
@@ -216,14 +220,17 @@ export default function ContentManagement() {
         if (data.success) {
           setContent(data.content)
         }
-      } else if (response.status === 401 && !isRedirecting) {
-        console.log('ContentPage: API returned 401, redirecting to login')
+      } else if (response.status === 401) {
+        // TEMPORARILY DISABLED - 401 redirect disabled to stop redirect loop
+        console.log('ContentPage: API returned 401 - redirect DISABLED')
+        /*
         setIsRedirecting(true)
         localStorage.removeItem('accessToken')
         localStorage.removeItem('refreshToken')
         setTimeout(() => {
           router.push('/admin/login')
         }, 500)
+        */
       }
     } catch (error) {
       console.error('Error loading content:', error)
