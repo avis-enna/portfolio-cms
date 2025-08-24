@@ -1,50 +1,55 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { useAuth } from '@/contexts/AuthContext'
 
 /**
  * Admin Root Page
- * Redirects to appropriate admin page based on authentication and setup status
+ * Redirects to appropriate admin page based on setup status
  */
 export default function AdminPage() {
   const router = useRouter()
-  const { user, isLoading } = useAuth()
+  const [isRedirecting, setIsRedirecting] = useState(false)
 
   useEffect(() => {
-    if (isLoading) {
-      return // Wait for auth to load
-    }
+    // Prevent multiple redirects
+    if (isRedirecting) return
 
-    if (!user) {
-      // Not authenticated, redirect to login
-      router.replace('/admin/login')
-      return
-    }
+    const checkSetupAndRedirect = async () => {
+      setIsRedirecting(true)
 
-    // Check if setup is complete by making a request to setup status
-    const checkSetupStatus = async () => {
       try {
-        const response = await fetch('/api/admin/setup/status')
-        const data = await response.json()
+        // Check if user is already authenticated
+        const accessToken = localStorage.getItem('accessToken')
 
-        if (data.success && data.isConfigured) {
-          // Setup is complete, redirect to dashboard
-          router.replace('/admin/dashboard')
+        if (accessToken) {
+          // User is authenticated, check setup status
+          const response = await fetch('/api/admin/setup/status')
+          const data = await response.json()
+
+          if (data.success && data.isConfigured) {
+            // Setup is complete, redirect to dashboard
+            router.replace('/admin/dashboard')
+          } else {
+            // Setup is not complete, redirect to setup
+            router.replace('/admin/setup')
+          }
         } else {
-          // Setup is not complete, redirect to setup
-          router.replace('/admin/setup')
+          // User is not authenticated, redirect to login
+          router.replace('/admin/login')
         }
       } catch (error) {
         console.error('Failed to check setup status:', error)
-        // Default to setup if we can't determine status
-        router.replace('/admin/setup')
+        // Default to login if we can't determine status
+        router.replace('/admin/login')
       }
     }
 
-    checkSetupStatus()
-  }, [user, isLoading, router])
+    // Small delay to prevent immediate redirect loop
+    const timer = setTimeout(checkSetupAndRedirect, 500)
+
+    return () => clearTimeout(timer)
+  }, [router, isRedirecting])
 
   // Show loading state while determining where to redirect
   return (
@@ -52,7 +57,7 @@ export default function AdminPage() {
       <div className="text-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
         <h2 className="text-lg font-medium text-gray-900 mb-2">Loading Admin Panel</h2>
-        <p className="text-gray-600">Redirecting to the appropriate page...</p>
+        <p className="text-gray-600">Checking setup status...</p>
       </div>
     </div>
   )

@@ -15,10 +15,34 @@ export default function AdminLoginPage() {
 
   // Check if already authenticated
   useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken')
-    if (accessToken) {
-      router.push('/admin/dashboard')
+    const checkAuthentication = async () => {
+      const accessToken = localStorage.getItem('accessToken')
+      if (accessToken) {
+        try {
+          // Validate token by making a request to a protected endpoint
+          const response = await fetch('/api/admin/setup/status', {
+            headers: {
+              'Authorization': `Bearer ${accessToken}`
+            }
+          })
+
+          if (response.ok) {
+            // Token is valid, redirect to dashboard
+            router.push('/admin/dashboard')
+          } else {
+            // Token is invalid, remove it
+            localStorage.removeItem('accessToken')
+            localStorage.removeItem('refreshToken')
+          }
+        } catch (error) {
+          // Error validating token, remove it
+          localStorage.removeItem('accessToken')
+          localStorage.removeItem('refreshToken')
+        }
+      }
     }
+
+    checkAuthentication()
   }, [router])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
