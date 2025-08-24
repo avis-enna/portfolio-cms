@@ -33,7 +33,8 @@ export default function AdminDashboard() {
   })
   const [recentActivity, setRecentActivity] = useState<ActivityItem[]>([])
   const [isLoading, setIsLoading] = useState(true)
-  const [isConfigured, setIsConfigured] = useState(true)
+  const [isConfigured, setIsConfigured] = useState(false)
+  const [isRedirecting, setIsRedirecting] = useState(true)
   const router = useRouter()
 
   useEffect(() => {
@@ -71,10 +72,12 @@ export default function AdminDashboard() {
     try {
       const accessToken = localStorage.getItem('accessToken')
       if (!accessToken) {
+        console.log('No access token found, redirecting to login')
         router.push('/admin/login')
         return
       }
 
+      console.log('Making dashboard API call with token:', accessToken.substring(0, 20) + '...')
       const response = await fetch('/api/admin/dashboard', {
         method: 'GET',
         headers: {
@@ -84,11 +87,19 @@ export default function AdminDashboard() {
       })
 
       if (!response.ok) {
-        if (response.status === 401) {
-          router.push('/admin/login')
+        if (response.status === 401 && !isRedirecting) {
+          console.error('Dashboard API returned 401 - token invalid, redirecting to login')
+          setIsRedirecting(true)
+          // Clear invalid tokens
+          localStorage.removeItem('accessToken')
+          localStorage.removeItem('refreshToken')
+          // Add delay to prevent rapid redirects
+          setTimeout(() => {
+            router.push('/admin/login')
+          }, 1000)
           return
         }
-        throw new Error('Failed to fetch dashboard data')
+        throw new Error(`Failed to fetch dashboard data: ${response.status}`)
       }
 
       const result = await response.json()
