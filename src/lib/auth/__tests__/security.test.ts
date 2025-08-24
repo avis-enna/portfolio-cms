@@ -29,7 +29,7 @@ describe('Authentication Security Tests', () => {
       process.env.JWT_SECRET = 'weak'
       
       await expect(generateTokens({
-        userId: 'user123',
+        userId: '507f1f77bcf86cd799439011',
         username: 'testuser',
         email: 'test@example.com'
       })).rejects.toThrow()
@@ -38,7 +38,7 @@ describe('Authentication Security Tests', () => {
     test('should reject expired tokens', async () => {
       // Generate token with very short expiry
       const tokens = await generateTokens({
-        userId: 'user123',
+        userId: '507f1f77bcf86cd799439011',
         username: 'testuser',
         email: 'test@example.com'
       })
@@ -73,7 +73,7 @@ describe('Authentication Security Tests', () => {
     test('should handle token payload injection attempts', async () => {
       // Test with malicious payload
       const maliciousPayload = {
-        userId: 'user123',
+        userId: '507f1f77bcf86cd799439011',
         username: 'testuser',
         email: 'test@example.com',
         isAdmin: true, // This should be ignored
@@ -253,7 +253,7 @@ describe('Authentication Security Tests', () => {
     test('should detect token reuse attempts', async () => {
       // Generate tokens
       const tokens = await generateTokens({
-        userId: 'user123',
+        userId: '507f1f77bcf86cd799439011',
         username: 'testuser',
         email: 'test@example.com'
       })
@@ -284,7 +284,7 @@ describe('Authentication Security Tests', () => {
     test('should enforce token rotation', async () => {
       // Test that refresh tokens are rotated on each use
       const tokens = await generateTokens({
-        userId: 'user123',
+        userId: '507f1f77bcf86cd799439011',
         username: 'testuser',
         email: 'test@example.com'
       })
@@ -321,7 +321,7 @@ describe('Authentication Security Tests', () => {
     test('should prevent privilege escalation', async () => {
       // Test that users can't escalate their privileges
       const tokens = await generateTokens({
-        userId: 'user123',
+        userId: '507f1f77bcf86cd799439011',
         username: 'regularuser',
         email: 'user@example.com'
       })

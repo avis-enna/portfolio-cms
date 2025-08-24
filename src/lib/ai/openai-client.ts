@@ -44,19 +44,93 @@ export interface AIPromptTemplate {
 }
 
 class OpenAIClient {
-  private client: OpenAI
-  private isConfigured: boolean
+  private client: OpenAI | null = null
+  private isConfigured: boolean = false
 
   constructor() {
-    this.isConfigured = !!process.env.OPENAI_API_KEY
-    
-    if (this.isConfigured) {
-      this.client = new OpenAI({
-        apiKey: process.env.OPENAI_API_KEY,
-      })
+    this.initialize()
+  }
+
+  private initialize() {
+    const apiKey = this.getApiKey()
+
+    if (apiKey) {
+      try {
+        this.client = new OpenAI({
+          apiKey: apiKey,
+        })
+        this.isConfigured = true
+        console.log('OpenAI client initialized successfully')
+      } catch (error) {
+        console.error('Failed to initialize OpenAI client:', error)
+        this.isConfigured = false
+      }
     } else {
       console.warn('OpenAI API key not configured. AI features will be disabled.')
+      this.isConfigured = false
     }
+  }
+
+  private getApiKey(): string | null {
+    // First try environment variable
+    let apiKey = process.env.OPENAI_API_KEY
+
+    if (!apiKey) {
+      // Try to load from stored settings
+      try {
+        const fs = require('fs')
+        const path = require('path')
+        const crypto = require('crypto')
+
+        const settingsPath = path.join(process.cwd(), 'config', 'api-keys.json')
+
+        if (fs.existsSync(settingsPath)) {
+          const data = fs.readFileSync(settingsPath, 'utf8')
+          const settings = JSON.parse(data)
+
+          if (settings.openai?.apiKey && settings.openai?.enabled) {
+            // Decrypt the API key
+            apiKey = this.decrypt(settings.openai.apiKey)
+          }
+        }
+      } catch (error) {
+        console.error('Failed to load API key from settings:', error)
+      }
+    }
+
+    return apiKey
+  }
+
+  private decrypt(encryptedText: string): string {
+    if (!encryptedText) return ''
+
+    try {
+      const crypto = require('crypto')
+      const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY || 'your-32-character-secret-key-here'
+
+      const algorithm = 'aes-256-cbc'
+      const key = crypto.scryptSync(ENCRYPTION_KEY, 'salt', 32)
+
+      const textParts = encryptedText.split(':')
+      const iv = Buffer.from(textParts.shift()!, 'hex')
+      const encrypted = textParts.join(':')
+
+      const decipher = crypto.createDecipher(algorithm, key)
+      let decrypted = decipher.update(encrypted, 'hex', 'utf8')
+      decrypted += decipher.final('utf8')
+
+      return decrypted
+    } catch (error) {
+      console.error('Decryption error:', error)
+      return ''
+    }
+  }
+
+  /**
+   * Reinitialize the client (useful after API key changes)
+   */
+  reinitialize() {
+    this.initialize()
   }
 
   /**
@@ -387,6 +461,206 @@ Provide practical, actionable suggestions that could enhance the content further
       return []
     }
   }
+
+  /**
+   * Improve existing content using OpenAI
+   */
+  async improveContent(params: {
+    content: string
+    type: string
+    improvements: string[]
+    tone?: string
+    length?: string
+  }): Promise<{
+    success: boolean
+    content?: string
+    suggestions?: string[]
+    error?: string
+    metadata?: {
+      originalLength: number
+      tokens: number
+      confidence: number
+    }
+  }> {
+    if (!this.isAvailable()) {
+      return {
+        success: false,
+        error: 'OpenAI is not configured',
+        content: undefined,
+        suggestions: [],
+      }
+    }
+
+    try {
+      const { content, type, improvements, tone = 'professional', length = 'medium' } = params
+
+      const improvementList = improvements.join(', ')
+      const prompt = `Please improve the following ${type} content by focusing on: ${improvementList}.
+
+Content to improve:
+"${content}"
+
+Requirements:
+- Tone: ${tone}
+- Length: ${length}
+- Maintain the core message while enhancing clarity, engagement, and professionalism
+- Provide specific suggestions for improvement
+
+Please provide:
+1. The improved content
+2. A list of specific improvements made
+3. Additional suggestions for further enhancement`
+
+      const response = await this.client!.chat.completions.create({
+        model: 'gpt-3.5-turbo',
+        messages: [
+          {
+            role: 'system',
+            content: 'You are a professional content editor and copywriter. Provide improved content and actionable suggestions.'
+          },
+          {
+            role: 'user',
+            content: prompt
+          }
+        ],
+        max_tokens: 1000,
+        temperature: 0.7,
+      })
+
+      const result = response.choices[0]?.message?.content || ''
+
+      // Parse the response to extract improved content and suggestions
+      const lines = result.split('\n').filter(line => line.trim())
+      const improvedContent = lines.find(line =>
+        line.toLowerCase().includes('improved') ||
+        line.toLowerCase().includes('enhanced')
+      ) || result
+
+      const suggestions = lines.filter(line =>
+        line.includes('•') ||
+        line.includes('-') ||
+        line.includes('suggestion')
+      ).map(line => line.replace(/^[•\-\d\.]\s*/, '').trim())
+
+      return {
+        success: true,
+        content: improvedContent,
+        suggestions: suggestions.length > 0 ? suggestions : ['Content has been improved for clarity and engagement'],
+        metadata: {
+          originalLength: content.length,
+          tokens: response.usage?.total_tokens || 0,
+          confidence: 0.8,
+        }
+      }
+    } catch (error: any) {
+      console.error('Failed to improve content:', error)
+      return {
+        success: false,
+        error: `Failed to improve content: ${error.message}`,
+        content: undefined,
+        suggestions: [],
+      }
+    }
+  }
+
+  /**
+   * Generate SEO-optimized content using OpenAI
+   */
+  async generateSEOContent(params: {
+    content: string
+    keywords: string[]
+    type: 'meta_description' | 'title' | 'heading' | 'alt_text'
+    maxLength?: number
+  }): Promise<{
+    success: boolean
+    content?: string
+    suggestions?: string[]
+    error?: string
+    metadata?: {
+      originalLength: number
+      tokens: number
+      confidence: number
+    }
+  }> {
+    if (!this.isAvailable()) {
+      return {
+        success: false,
+        error: 'OpenAI is not configured',
+        content: undefined,
+        suggestions: [],
+      }
+    }
+
+    try {
+      const { content, keywords, type, maxLength } = params
+      const keywordList = keywords.join(', ')
+
+      let prompt = ''
+      let lengthGuidance = ''
+
+      switch (type) {
+        case 'meta_description':
+          lengthGuidance = maxLength ? `${maxLength} characters` : '150-160 characters'
+          prompt = `Create an SEO-optimized meta description for the following content. Include these keywords naturally: ${keywordList}. Keep it under ${lengthGuidance} and make it compelling for search results.`
+          break
+        case 'title':
+          lengthGuidance = maxLength ? `${maxLength} characters` : '50-60 characters'
+          prompt = `Create an SEO-optimized title for the following content. Include these keywords naturally: ${keywordList}. Keep it under ${lengthGuidance} and make it click-worthy.`
+          break
+        case 'heading':
+          lengthGuidance = maxLength ? `${maxLength} characters` : '70 characters'
+          prompt = `Create an SEO-optimized heading for the following content. Include these keywords naturally: ${keywordList}. Keep it under ${lengthGuidance} and make it engaging.`
+          break
+        case 'alt_text':
+          lengthGuidance = maxLength ? `${maxLength} characters` : '125 characters'
+          prompt = `Create SEO-optimized alt text for an image related to the following content. Include these keywords naturally: ${keywordList}. Keep it under ${lengthGuidance} and be descriptive.`
+          break
+      }
+
+      prompt += `\n\nContent: "${content}"`
+
+      const response = await this.client!.chat.completions.create({
+        model: 'gpt-3.5-turbo',
+        messages: [
+          {
+            role: 'system',
+            content: 'You are an SEO expert. Create optimized content that ranks well in search engines while being natural and engaging.'
+          },
+          {
+            role: 'user',
+            content: prompt
+          }
+        ],
+        max_tokens: 200,
+        temperature: 0.5,
+      })
+
+      const result = response.choices[0]?.message?.content?.trim() || ''
+
+      return {
+        success: true,
+        content: result,
+        suggestions: [
+          'Consider A/B testing different variations',
+          'Monitor search performance and adjust keywords',
+          'Ensure content matches user search intent'
+        ],
+        metadata: {
+          originalLength: content.length,
+          tokens: response.usage?.total_tokens || 0,
+          confidence: 0.85,
+        }
+      }
+    } catch (error: any) {
+      console.error('Failed to generate SEO content:', error)
+      return {
+        success: false,
+        error: `Failed to generate SEO content: ${error.message}`,
+        content: undefined,
+        suggestions: [],
+      }
+    }
+  }
 }
 
 // Export singleton instance
@@ -422,3 +696,182 @@ export const promptTemplates: AIPromptTemplate[] = [
     examples: ['Tech blog ideas', 'Design article topics']
   }
 ]
+
+  /**
+   * Improve existing content using OpenAI
+   */
+  async improveContent(params: {
+    content: string
+    type: string
+    improvements: string[]
+    tone?: string
+    length?: string
+  }): Promise<{
+    success: boolean
+    content?: string
+    suggestions?: string[]
+    error?: string
+    metadata?: {
+      model: string
+      tokens: number
+      confidence: number
+    }
+  }> {
+    if (!this.isAvailable()) {
+      return {
+        success: false,
+        error: 'OpenAI is not configured',
+        content: null,
+        suggestions: [],
+      }
+    }
+
+    try {
+      const { content, type, improvements, tone = 'professional', length = 'medium' } = params
+
+      const improvementPrompt = `Please improve the following ${type.replace('_', ' ')} content based on these specific improvements: ${improvements.join(', ')}.
+
+Original content:
+"${content}"
+
+Please provide an improved version that:
+- Maintains the original meaning and intent
+- Applies the requested improvements: ${improvements.join(', ')}
+- Uses a ${tone} tone
+- Is ${length} in length
+- Is engaging and well-written
+
+Improved content:`
+
+      const response = await this.client.chat.completions.create({
+        model: 'gpt-3.5-turbo',
+        messages: [
+          {
+            role: 'system',
+            content: 'You are a professional content editor and copywriter. Improve content while maintaining its core message and intent.',
+          },
+          {
+            role: 'user',
+            content: improvementPrompt,
+          },
+        ],
+        max_tokens: this.getMaxTokens(length),
+        temperature: 0.7,
+        n: 3, // Generate 3 suggestions
+      })
+
+      const suggestions = response.choices.map(choice => choice.message.content?.trim() || '')
+      const improvedContent = suggestions[0]
+
+      return {
+        success: true,
+        content: improvedContent,
+        suggestions,
+        metadata: {
+          model: 'gpt-3.5-turbo',
+          tokens: response.usage?.total_tokens || 0,
+          confidence: 0.85,
+        },
+      }
+    } catch (error) {
+      console.error('OpenAI improvement error:', error)
+      return {
+        success: false,
+        error: `Failed to improve content: ${error.message}`,
+        content: null,
+        suggestions: [],
+      }
+    }
+  }
+
+  /**
+   * Generate SEO-optimized content using OpenAI
+   */
+  async generateSEOContent(params: {
+    content: string
+    keywords: string[]
+    type: 'meta_description' | 'title' | 'heading' | 'alt_text'
+    maxLength?: number
+  }): Promise<{
+    success: boolean
+    content?: string
+    suggestions?: string[]
+    error?: string
+    metadata?: {
+      model: string
+      tokens: number
+      confidence: number
+    }
+  }> {
+    if (!this.isAvailable()) {
+      return {
+        success: false,
+        error: 'OpenAI is not configured',
+        content: null,
+        suggestions: [],
+      }
+    }
+
+    try {
+      const { content, keywords, type, maxLength } = params
+
+      const seoPrompt = `Create SEO-optimized ${type.replace('_', ' ')} based on the following content and target keywords.
+
+Content:
+"${content}"
+
+Target Keywords: ${keywords.join(', ')}
+
+Requirements:
+- Naturally incorporate the target keywords
+- Follow SEO best practices for ${type.replace('_', ' ')}
+- Be compelling and click-worthy
+- ${maxLength ? `Stay under ${maxLength} characters` : ''}
+- Maintain readability and natural flow
+
+Generate 3 variations of SEO-optimized ${type.replace('_', ' ')}:`
+
+      const response = await this.client.chat.completions.create({
+        model: 'gpt-3.5-turbo',
+        messages: [
+          {
+            role: 'system',
+            content: 'You are an SEO expert and copywriter. Create compelling, keyword-optimized content that ranks well and converts visitors.',
+          },
+          {
+            role: 'user',
+            content: seoPrompt,
+          },
+        ],
+        max_tokens: 200,
+        temperature: 0.8,
+        n: 3,
+      })
+
+      const suggestions = response.choices.map(choice => choice.message.content?.trim() || '')
+      const seoContent = suggestions[0]
+
+      return {
+        success: true,
+        content: seoContent,
+        suggestions,
+        metadata: {
+          model: 'gpt-3.5-turbo',
+          tokens: response.usage?.total_tokens || 0,
+          confidence: 0.9,
+        },
+      }
+    } catch (error) {
+      console.error('OpenAI SEO generation error:', error)
+      return {
+        success: false,
+        error: `Failed to generate SEO content: ${error.message}`,
+        content: null,
+        suggestions: [],
+      }
+    }
+  }
+}
+
+// Export singleton instance
+export const openaiClient = new OpenAIClient()

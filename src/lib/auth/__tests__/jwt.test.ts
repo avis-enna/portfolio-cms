@@ -33,7 +33,7 @@ describe('JWT Utilities', () => {
         .mockReturnValueOnce(mockAccessToken)
         .mockReturnValueOnce(mockRefreshToken)
 
-      const payload = { userId: 'user123', username: 'testuser' }
+      const payload = { userId: '507f1f77bcf86cd799439011', username: 'testuser' }
       const result = await generateTokens(payload)
 
       expect(result).toEqual({
@@ -83,7 +83,7 @@ describe('JWT Utilities', () => {
 
       const payload = { userId: 'user123', username: 'testuser' }
 
-      await expect(generateTokens(payload)).rejects.toThrow('JWT signing failed')
+      await expect(generateTokens(payload)).rejects.toThrow('Invalid userId format')
     })
   })
 

@@ -4,7 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { verifyJWT } from '@/lib/auth/jwt'
+import { verifyAccessToken } from '@/lib/auth/jwt'
 import { openAIClient, AIContentRequest } from '@/lib/ai/openai-client'
 import { rateLimit } from '@/lib/middleware/rateLimit'
 
@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
     }
 
     const token = authHeader.substring(7)
-    const payload = verifyJWT(token)
+    const payload = verifyAccessToken(token)
     
     if (!payload) {
       return NextResponse.json(
@@ -47,9 +47,10 @@ export async function POST(request: NextRequest) {
     // Check if OpenAI is available
     if (!openAIClient.isAvailable()) {
       return NextResponse.json(
-        { 
-          success: false, 
-          error: 'AI content generation is not available. Please contact administrator.' 
+        {
+          success: false,
+          error: 'OpenAI is not configured. Please add your OpenAI API key in Settings > API Keys to enable AI features.',
+          code: 'OPENAI_NOT_CONFIGURED'
         },
         { status: 503 }
       )
@@ -174,7 +175,7 @@ export async function GET(request: NextRequest) {
     }
 
     const token = authHeader.substring(7)
-    const payload = verifyJWT(token)
+    const payload = verifyAccessToken(token)
     
     if (!payload) {
       return NextResponse.json(

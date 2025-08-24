@@ -1,7 +1,7 @@
 import React from 'react'
 import { Metadata } from 'next'
 import { connectToDatabase } from '@/lib/database/connection'
-import { PortfolioData } from '@/lib/database/models'
+import { PortfolioContent } from '@/lib/database/models'
 import { Navigation, ScrollToTop } from '@/components/Navigation'
 import { HeroSection } from '@/components/HeroSection'
 import { AboutSection, ExperienceSection, ProjectsSection, EducationSection } from '@/components/PortfolioSections'
@@ -98,7 +98,7 @@ export async function generateMetadata(): Promise<Metadata> {
 async function getPortfolioData(): Promise<PortfolioDataType | null> {
   try {
     await connectToDatabase()
-    const portfolioData = await PortfolioData.findOne().lean()
+    const portfolioData = await PortfolioContent.findOne().lean()
 
     if (!portfolioData) {
       return null

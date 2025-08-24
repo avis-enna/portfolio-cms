@@ -6,7 +6,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { connectToDatabase } from '@/lib/database/connection'
 import { AnalyticsEvent, AnalyticsSession } from '@/lib/database/models'
-import { verifyJWT } from '@/lib/auth/jwt'
+import { verifyAccessToken } from '@/lib/auth/jwt'
 import { rateLimit } from '@/lib/middleware/rateLimit'
 
 // Rate limiting for analytics events (more permissive for tracking)
@@ -93,7 +93,7 @@ export async function GET(request: NextRequest) {
     }
 
     const token = authHeader.substring(7)
-    const payload = verifyJWT(token)
+    const payload = verifyAccessToken(token)
     
     if (!payload || payload.role !== 'admin') {
       return NextResponse.json(

@@ -55,6 +55,7 @@ export default function AdminSetupPage() {
   const [currentStep, setCurrentStep] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
   const [isConfigured, setIsConfigured] = useState(false)
+  const [errors, setErrors] = useState<Record<string, string>>({})
   const { showToast } = useToast()
 
   const [personalInfo, setPersonalInfo] = useState<PersonalInfo>({
@@ -157,9 +158,33 @@ export default function AdminSetupPage() {
     }
   }
 
+  const validateStep = (step: number): boolean => {
+    const newErrors: Record<string, string> = {}
+
+    if (step === 0) {
+      // Personal Information validation
+      if (!personalInfo.name.trim()) {
+        newErrors.name = 'Name is required'
+      }
+      if (!personalInfo.title.trim()) {
+        newErrors.title = 'Professional title is required'
+      }
+      if (!personalInfo.email.trim()) {
+        newErrors.email = 'Email is required'
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(personalInfo.email)) {
+        newErrors.email = 'Please enter a valid email'
+      }
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
   const handleNext = () => {
-    if (currentStep < steps.length - 1) {
-      setCurrentStep(currentStep + 1)
+    if (validateStep(currentStep)) {
+      if (currentStep < steps.length - 1) {
+        setCurrentStep(currentStep + 1)
+      }
     }
   }
 
@@ -213,31 +238,43 @@ export default function AdminSetupPage() {
         <h3 className="text-lg font-medium text-gray-900 mb-4">Personal Information</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
               Full Name *
             </label>
             <input
+              id="name"
               type="text"
               value={personalInfo.name}
               onChange={(e) => setPersonalInfo({ ...personalInfo, name: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
+                errors.name ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+              }`}
               placeholder="Your Full Name"
               required
             />
+            {errors.name && (
+              <p className="mt-1 text-sm text-red-600">{errors.name}</p>
+            )}
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
               Professional Title *
             </label>
             <input
+              id="title"
               type="text"
               value={personalInfo.title}
               onChange={(e) => setPersonalInfo({ ...personalInfo, title: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
+                errors.title ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+              }`}
               placeholder="e.g., Full Stack Developer"
               required
             />
+            {errors.title && (
+              <p className="mt-1 text-sm text-red-600">{errors.title}</p>
+            )}
           </div>
           
           <div>
@@ -254,17 +291,23 @@ export default function AdminSetupPage() {
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
               Email Address *
             </label>
             <input
+              id="email"
               type="email"
               value={personalInfo.email}
               onChange={(e) => setPersonalInfo({ ...personalInfo, email: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
+                errors.email ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+              }`}
               placeholder="your.email@example.com"
               required
             />
+            {errors.email && (
+              <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+            )}
           </div>
           
           <div>
@@ -321,10 +364,11 @@ export default function AdminSetupPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {Object.entries(socialLinks).map(([platform, url]) => (
             <div key={platform}>
-              <label className="block text-sm font-medium text-gray-700 mb-2 capitalize">
+              <label htmlFor={platform} className="block text-sm font-medium text-gray-700 mb-2 capitalize">
                 {platform}
               </label>
               <input
+                id={platform}
                 type="url"
                 value={url}
                 onChange={(e) => setSocialLinks({ ...socialLinks, [platform]: e.target.value })}
@@ -368,6 +412,7 @@ export default function AdminSetupPage() {
                     checked={enabled}
                     onChange={(e) => setFeatures({ ...features, [feature]: e.target.checked })}
                     className="sr-only peer"
+                    aria-label={`Toggle ${featureInfo?.name || feature}`}
                   />
                   <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
                 </label>
@@ -396,6 +441,7 @@ export default function AdminSetupPage() {
               value={theme.name}
               onChange={(e) => setTheme({ ...theme, name: e.target.value })}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              aria-label="Theme Style"
             >
               <option value="default">Default</option>
               <option value="minimal">Minimal</option>
@@ -414,6 +460,7 @@ export default function AdminSetupPage() {
                 value={theme.primaryColor}
                 onChange={(e) => setTheme({ ...theme, primaryColor: e.target.value })}
                 className="w-12 h-12 border border-gray-300 rounded-md cursor-pointer"
+                aria-label="Primary Color"
               />
               <input
                 type="text"
@@ -433,6 +480,7 @@ export default function AdminSetupPage() {
               value={theme.mode}
               onChange={(e) => setTheme({ ...theme, mode: e.target.value })}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              aria-label="Color Mode"
             >
               <option value="system">System (Auto)</option>
               <option value="light">Light</option>
@@ -476,11 +524,32 @@ export default function AdminSetupPage() {
           <ul className="text-sm text-blue-700 space-y-1">
             <li>• Access your admin dashboard to add projects and content</li>
             <li>• Upload your profile picture and project images</li>
+            <li>• Add your OpenAI API key in Settings &gt; API Keys for AI features</li>
             <li>• Write your first blog post</li>
             <li>• Customize your theme further if needed</li>
             <li>• Deploy your portfolio to make it live</li>
           </ul>
         </div>
+
+        {!features.ai && (
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mt-4">
+            <h4 className="font-medium text-yellow-900 mb-2">🤖 AI Features Available</h4>
+            <p className="text-sm text-yellow-700 mb-2">
+              You can enable AI-powered content generation later by adding your OpenAI API key in the admin settings.
+            </p>
+            <p className="text-xs text-yellow-600">
+              <strong>No API key yet?</strong> Get one from{' '}
+              <a
+                href="https://platform.openai.com/api-keys"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:no-underline"
+              >
+                OpenAI Platform
+              </a>
+            </p>
+          </div>
+        )}
       </div>
     </div>
   )
@@ -545,6 +614,22 @@ export default function AdminSetupPage() {
 
       {/* Progress Steps */}
       <div className="mb-8">
+        {/* Progress Bar */}
+        <div className="mb-4">
+          <div
+            role="progressbar"
+            aria-valuenow={(currentStep + 1) * 20}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label={`Setup progress: Step ${currentStep + 1} of ${steps.length}`}
+            className="w-full bg-gray-200 rounded-full h-2"
+          >
+            <div
+              className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+              style={{ width: `${(currentStep + 1) * 20}%` }}
+            />
+          </div>
+        </div>
         <div className="flex items-center justify-between">
           {steps.map((step, index) => (
             <div key={step.id} className="flex items-center">
@@ -592,7 +677,6 @@ export default function AdminSetupPage() {
           {currentStep < steps.length - 1 ? (
             <Button
               onClick={handleNext}
-              disabled={!isStepValid()}
               className="bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Next

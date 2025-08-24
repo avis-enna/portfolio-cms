@@ -584,7 +584,7 @@ export default function ContentManagement() {
                     ? 'border-red-500 focus:ring-red-500'
                     : 'border-gray-300 focus:ring-blue-500'
                 }`}
-                placeholder="Tell us about yourself, your experience, and what you're passionate about..."
+                placeholder="Tell us about yourself, your experience, and what you&apos;re passionate about..."
               />
               {getFieldError('personalInfo.bio') && (
                 <p className="mt-1 text-sm text-red-500">{getFieldError('personalInfo.bio')}</p>
@@ -729,7 +729,7 @@ export default function ContentManagement() {
             ))}
             {content.experience.length === 0 && (
               <div className="text-center py-8 text-gray-400">
-                No work experience added yet. Click "Add Experience" to get started.
+                No work experience added yet. Click &quot;Add Experience&quot; to get started.
               </div>
             )}
           </div>
@@ -829,7 +829,7 @@ export default function ContentManagement() {
             ))}
             {content.education.length === 0 && (
               <div className="text-center py-8 text-gray-500">
-                No education added yet. Click "Add Education" to get started.
+                No education added yet. Click &quot;Add Education&quot; to get started.
               </div>
             )}
           </div>
@@ -1025,7 +1025,7 @@ export default function ContentManagement() {
             ))}
             {content.projects.length === 0 && (
               <div className="text-center py-8 text-gray-500">
-                No projects added yet. Click "Add Project" to get started.
+                No projects added yet. Click &quot;Add Project&quot; to get started.
               </div>
             )}
           </div>
@@ -1122,7 +1122,7 @@ export default function ContentManagement() {
             ))}
             {content.certifications.length === 0 && (
               <div className="text-center py-8 text-gray-500">
-                No certifications added yet. Click "Add Certification" to get started.
+                No certifications added yet. Click &quot;Add Certification&quot; to get started.
               </div>
             )}
           </div>

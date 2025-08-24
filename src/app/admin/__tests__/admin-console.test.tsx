@@ -65,7 +65,7 @@ describe('Admin Console Integration Tests', () => {
 
       // Check navigation items
       expect(screen.getByTestId('nav-dashboard')).toBeInTheDocument()
-      expect(screen.getByTestId('nav-content')).toBeInTheDocument()
+      expect(screen.getByTestId('nav-portfolio')).toBeInTheDocument()
       expect(screen.getByTestId('nav-blog')).toBeInTheDocument()
       expect(screen.getByTestId('nav-contact')).toBeInTheDocument()
       expect(screen.getByTestId('nav-media')).toBeInTheDocument()
@@ -165,7 +165,7 @@ describe('Admin Console Integration Tests', () => {
 
       // Check navigation links
       expect(screen.getByTestId('nav-dashboard')).toHaveAttribute('href', '/admin/dashboard')
-      expect(screen.getByTestId('nav-content')).toHaveAttribute('href', '/admin/content')
+      expect(screen.getByTestId('nav-portfolio')).toHaveAttribute('href', '/admin/content')
       expect(screen.getByTestId('nav-blog')).toHaveAttribute('href', '/admin/blog')
       expect(screen.getByTestId('nav-contact')).toHaveAttribute('href', '/admin/contact')
       expect(screen.getByTestId('nav-media')).toHaveAttribute('href', '/admin/media')
@@ -193,7 +193,7 @@ describe('Admin Console Integration Tests', () => {
       )
 
       // Content nav item should be active
-      const contentNav = screen.getByTestId('nav-content')
+      const contentNav = screen.getByTestId('nav-portfolio')
       expect(contentNav).toHaveClass('bg-blue-100', 'text-blue-700')
     })
   })
@@ -317,7 +317,7 @@ describe('Admin Console Integration Tests', () => {
 
       // Should be able to tab through navigation
       fireEvent.keyDown(dashboardNav, { key: 'Tab' })
-      const contentNav = screen.getByTestId('nav-content')
+      const contentNav = screen.getByTestId('nav-portfolio')
       expect(contentNav).toHaveFocus()
     })
 

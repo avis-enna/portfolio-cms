@@ -4,7 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { verifyJWT } from '@/lib/auth/jwt'
+import { verifyAccessToken } from '@/lib/auth/jwt'
 import { openAIClient } from '@/lib/ai/openai-client'
 import { rateLimit } from '@/lib/middleware/rateLimit'
 
@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
     }
 
     const token = authHeader.substring(7)
-    const payload = verifyJWT(token)
+    const payload = verifyAccessToken(token)
     
     if (!payload) {
       return NextResponse.json(

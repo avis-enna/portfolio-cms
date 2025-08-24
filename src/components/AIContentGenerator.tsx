@@ -131,7 +131,11 @@ export const AIContentGenerator: React.FC<AIContentGeneratorProps> = ({
 
         showToast(`Generated ${result.data.results.length} content variation${result.data.results.length > 1 ? 's' : ''}!`, 'success')
       } else {
-        showToast(result.error || 'Failed to generate content', 'error')
+        if (result.code === 'OPENAI_NOT_CONFIGURED') {
+          showToast('OpenAI not configured. Please add your API key in Settings > API Keys.', 'error')
+        } else {
+          showToast(result.error || 'Failed to generate content', 'error')
+        }
       }
     } catch (error) {
       console.error('AI generation error:', error)
@@ -238,11 +242,40 @@ export const AIContentGenerator: React.FC<AIContentGeneratorProps> = ({
 
   if (!isAIAvailable) {
     return (
-      <div className={`p-4 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 ${className}`}>
+      <div className={`bg-blue-50 border border-blue-200 rounded-lg p-6 ${className}`}>
         <div className="text-center">
-          <div className="text-gray-400 text-2xl mb-2">🤖</div>
-          <p className="text-sm text-gray-600">AI content generation is not available</p>
-          <p className="text-xs text-gray-500 mt-1">Contact administrator to enable AI features</p>
+          <div className="text-3xl mb-3">🤖</div>
+          <h3 className="text-lg font-medium text-blue-900 mb-2">AI Content Generation</h3>
+          <p className="text-sm text-blue-700 mb-4">
+            OpenAI is not configured. Add your API key to unlock AI-powered content generation!
+          </p>
+          <div className="bg-white rounded-lg p-4 mb-4">
+            <h4 className="font-medium text-blue-900 mb-2">🚀 What you'll get with AI:</h4>
+            <ul className="text-sm text-blue-700 space-y-1 text-left">
+              <li>• Generate professional portfolio content automatically</li>
+              <li>• Create project descriptions with multiple variations</li>
+              <li>• Get blog post ideas and content enhancement</li>
+              <li>• SEO optimization and improvement suggestions</li>
+            </ul>
+          </div>
+          <button
+            type="button"
+            onClick={() => window.open('/admin/settings/api-keys', '_blank')}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
+          >
+            ⚙️ Configure OpenAI API Key
+          </button>
+          <p className="text-xs text-blue-600 mt-3">
+            <strong>No API key?</strong> Get one from{' '}
+            <a
+              href="https://platform.openai.com/api-keys"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:no-underline"
+            >
+              OpenAI Platform
+            </a>
+          </p>
         </div>
       </div>
     )

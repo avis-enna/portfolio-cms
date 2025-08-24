@@ -4,11 +4,11 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { verifyJWT } from '@/lib/auth/jwt'
+import { verifyAccessToken } from '@/lib/auth/jwt'
 import { createLinkedInClient, formatShareContent, createPortfolioShareContent } from '@/lib/linkedin/client'
 import { LinkedInAPIError, LinkedInAuthError } from '@/lib/linkedin/config'
 import { connectToDatabase } from '@/lib/database/connection'
-import { User, PortfolioData } from '@/lib/database/models'
+import { User, PortfolioContent } from '@/lib/database/models'
 import { rateLimit } from '@/lib/middleware/rateLimit'
 
 // Rate limiting for LinkedIn sharing
@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
     }
 
     const token = authHeader.substring(7)
-    const payload = verifyJWT(token)
+    const payload = verifyAccessToken(token)
     
     if (!payload || payload.role !== 'admin') {
       return NextResponse.json(
@@ -110,7 +110,7 @@ export async function POST(request: NextRequest) {
       switch (type) {
         case 'portfolio':
           // Get portfolio data
-          const portfolioData = await PortfolioData.findOne().lean()
+          const portfolioData = await PortfolioContent.findOne().lean()
           if (!portfolioData) {
             return NextResponse.json(
               { success: false, error: 'Portfolio data not found' },
@@ -307,7 +307,7 @@ export async function GET(request: NextRequest) {
     }
 
     const token = authHeader.substring(7)
-    const payload = verifyJWT(token)
+    const payload = verifyAccessToken(token)
     
     if (!payload || payload.role !== 'admin') {
       return NextResponse.json(

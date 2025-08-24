@@ -451,6 +451,27 @@ class ConfigLoader {
   }
 
   /**
+   * Get blog configuration
+   */
+  getBlogConfig(): any {
+    try {
+      return this.loadConfig('blog.json')
+    } catch (error) {
+      if (error.message.includes('not found')) {
+        throw new Error('Blog configuration not found')
+      }
+      throw new Error('Failed to load blog configuration')
+    }
+  }
+
+  /**
+   * Save blog configuration
+   */
+  saveBlogConfig(config: any): void {
+    this.saveConfig('blog.json', config)
+  }
+
+  /**
    * Generic config loader
    */
   private loadConfig<T>(filename: string): T {
