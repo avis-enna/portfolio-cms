@@ -21,6 +21,7 @@ const nextConfig: NextConfig = {
 
   // Turbopack configuration (moved from experimental)
   turbopack: {
+    root: process.cwd(),
     rules: {
       '*.svg': {
         loaders: ['@svgr/webpack'],

@@ -159,8 +159,7 @@ const AnalyticsEventSchema = new Schema<IAnalyticsEvent>(
   }
 )
 
-// Indexes for performance
-AnalyticsEventSchema.index({ timestamp: -1 })
+// Indexes for performance (timestamp already has index from schema definition)
 AnalyticsEventSchema.index({ sessionId: 1, timestamp: 1 })
 AnalyticsEventSchema.index({ type: 1, timestamp: -1 })
 AnalyticsEventSchema.index({ page: 1, timestamp: -1 })

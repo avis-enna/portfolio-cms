@@ -185,8 +185,7 @@ const AnalyticsSessionSchema = new Schema<IAnalyticsSession>(
   }
 )
 
-// Indexes for performance
-AnalyticsSessionSchema.index({ startTime: -1 })
+// Indexes for performance (startTime already has index from schema definition)
 AnalyticsSessionSchema.index({ endTime: -1 })
 AnalyticsSessionSchema.index({ duration: -1 })
 AnalyticsSessionSchema.index({ 'device.type': 1, startTime: -1 })

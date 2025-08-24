@@ -217,8 +217,7 @@ const PerformanceMetricSchema = new Schema<IPerformanceMetric>(
   }
 )
 
-// Indexes for performance
-PerformanceMetricSchema.index({ timestamp: -1 })
+// Indexes for performance (timestamp already has index from schema definition)
 PerformanceMetricSchema.index({ page: 1, timestamp: -1 })
 PerformanceMetricSchema.index({ 'device.type': 1, timestamp: -1 })
 PerformanceMetricSchema.index({ performanceScore: -1, timestamp: -1 })

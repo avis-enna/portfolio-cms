@@ -156,9 +156,7 @@ const UserSchema = new Schema<IUser>(
   }
 )
 
-// Indexes
-UserSchema.index({ username: 1 }, { unique: true })
-UserSchema.index({ email: 1 }, { unique: true })
+// Indexes (username and email already have unique indexes from schema definition)
 UserSchema.index({ lastLogin: 1 })
 
 // Pre-save middleware to hash password

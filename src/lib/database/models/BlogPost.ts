@@ -154,8 +154,7 @@ const BlogPostSchema = new Schema<IBlogPost>(
   }
 )
 
-// Indexes
-BlogPostSchema.index({ slug: 1 }, { unique: true })
+// Indexes (slug already has unique index from schema definition)
 BlogPostSchema.index({ status: 1 })
 BlogPostSchema.index({ publishedAt: -1 })
 BlogPostSchema.index({ displayOrder: 1 })
