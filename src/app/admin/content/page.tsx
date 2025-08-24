@@ -99,6 +99,7 @@ export default function ContentManagement() {
   const { success, error, warning } = useToast()
   const router = useRouter()
 
+  const [isRedirecting, setIsRedirecting] = useState(false)
   const [content, setContent] = useState<PortfolioContent>({
     personalInfo: {
       name: '',
@@ -195,8 +196,12 @@ export default function ContentManagement() {
   const loadContent = async () => {
     try {
       const accessToken = localStorage.getItem('accessToken')
-      if (!accessToken) {
-        router.push('/admin/login')
+      if (!accessToken && !isRedirecting) {
+        console.log('ContentPage: No access token found, redirecting to login')
+        setIsRedirecting(true)
+        setTimeout(() => {
+          router.push('/admin/login')
+        }, 500)
         return
       }
 
@@ -211,8 +216,14 @@ export default function ContentManagement() {
         if (data.success) {
           setContent(data.content)
         }
-      } else if (response.status === 401) {
-        router.push('/admin/login')
+      } else if (response.status === 401 && !isRedirecting) {
+        console.log('ContentPage: API returned 401, redirecting to login')
+        setIsRedirecting(true)
+        localStorage.removeItem('accessToken')
+        localStorage.removeItem('refreshToken')
+        setTimeout(() => {
+          router.push('/admin/login')
+        }, 500)
       }
     } catch (error) {
       console.error('Error loading content:', error)
@@ -414,9 +425,12 @@ export default function ContentManagement() {
 
     try {
       const accessToken = localStorage.getItem('accessToken')
-      if (!accessToken) {
+      if (!accessToken && !isRedirecting) {
         warning('Session expired', 'Please log in again to continue.')
-        router.push('/admin/login')
+        setIsRedirecting(true)
+        setTimeout(() => {
+          router.push('/admin/login')
+        }, 500)
         return
       }
 
