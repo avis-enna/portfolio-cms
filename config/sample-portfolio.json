@@ -1,0 +1,257 @@
+{
+  "personal": {
+    "name": "Alex Johnson",
+    "title": "Full Stack Developer",
+    "tagline": "Building amazing digital experiences with modern technologies",
+    "bio": "I'm a passionate full-stack developer with 5+ years of experience creating scalable web applications. I love solving complex problems and building user-centric solutions that make a real impact. When I'm not coding, you'll find me exploring new technologies, contributing to open source, or hiking in the mountains.",
+    "location": "San Francisco, CA",
+    "timezone": "America/Los_Angeles",
+    "languages": ["English", "Spanish", "French"],
+    "email": "alex.johnson@example.com",
+    "phone": "+1 (555) 123-4567",
+    "website": "https://alexjohnson.dev",
+    "avatar": "/images/avatar.jpg",
+    "resume": "/files/alex-johnson-resume.pdf"
+  },
+  "social": {
+    "github": "https://github.com/alexjohnson",
+    "linkedin": "https://linkedin.com/in/alexjohnson",
+    "twitter": "https://twitter.com/alexjohnsondev",
+    "instagram": "https://instagram.com/alexjohnson",
+    "youtube": "https://youtube.com/@alexjohnsondev",
+    "dribbble": "https://dribbble.com/alexjohnson",
+    "behance": "https://behance.net/alexjohnson",
+    "medium": "https://medium.com/@alexjohnson",
+    "dev": "https://dev.to/alexjohnson",
+    "stackoverflow": "https://stackoverflow.com/users/123456/alex-johnson"
+  },
+  "about": {
+    "shortDescription": "Passionate full-stack developer creating innovative web solutions",
+    "longDescription": "I'm a dedicated full-stack developer with over 5 years of experience in creating robust, scalable web applications. My passion lies in solving complex problems and building user-centric solutions that make a real impact. I specialize in React, Node.js, and cloud technologies, with a strong focus on performance and user experience.",
+    "interests": [
+      "Web Development",
+      "Machine Learning",
+      "Open Source",
+      "Photography",
+      "Hiking",
+      "Travel",
+      "Music Production",
+      "Sustainable Technology"
+    ],
+    "values": [
+      "Innovation",
+      "Quality",
+      "Collaboration",
+      "Continuous Learning",
+      "User-Centric Design",
+      "Sustainability"
+    ],
+    "funFacts": [
+      "I've contributed to 100+ open source projects",
+      "I speak 3 languages fluently",
+      "I've traveled to 30 countries",
+      "I can solve a Rubik's cube in under 90 seconds",
+      "I've climbed 15 mountains over 10,000 feet",
+      "I produce electronic music in my spare time"
+    ]
+  },
+  "experience": [
+    {
+      "id": "exp1",
+      "company": "TechCorp Solutions",
+      "position": "Senior Full Stack Developer",
+      "location": "San Francisco, CA",
+      "type": "Full-time",
+      "startDate": "2022-03-01",
+      "endDate": null,
+      "current": true,
+      "description": "Lead development of scalable web applications using React, Node.js, and cloud technologies. Mentor junior developers and drive technical decisions for multiple product teams.",
+      "achievements": [
+        "Improved application performance by 45% through optimization",
+        "Led a team of 6 developers across 3 major projects",
+        "Implemented CI/CD pipelines reducing deployment time by 70%",
+        "Architected microservices infrastructure serving 1M+ users",
+        "Reduced bug reports by 60% through comprehensive testing strategies"
+      ],
+      "technologies": ["React", "Node.js", "TypeScript", "AWS", "Docker", "Kubernetes", "PostgreSQL", "Redis"]
+    },
+    {
+      "id": "exp2",
+      "company": "StartupHub Inc.",
+      "position": "Full Stack Developer",
+      "location": "Remote",
+      "type": "Full-time",
+      "startDate": "2020-01-15",
+      "endDate": "2022-02-28",
+      "current": false,
+      "description": "Developed and maintained multiple client applications using modern web technologies. Collaborated with design and product teams to deliver exceptional user experiences.",
+      "achievements": [
+        "Built 15+ client applications from concept to deployment",
+        "Reduced development time by 40% through reusable component library",
+        "Mentored 4 junior developers and interns",
+        "Implemented real-time features serving 100K+ concurrent users",
+        "Achieved 99.9% uptime across all deployed applications"
+      ],
+      "technologies": ["Vue.js", "Python", "Django", "PostgreSQL", "Redis", "AWS", "Docker"]
+    },
+    {
+      "id": "exp3",
+      "company": "Digital Agency Pro",
+      "position": "Frontend Developer",
+      "location": "Los Angeles, CA",
+      "type": "Full-time",
+      "startDate": "2018-06-01",
+      "endDate": "2019-12-31",
+      "current": false,
+      "description": "Created responsive, interactive websites and web applications for diverse clients. Focused on performance optimization and accessibility compliance.",
+      "achievements": [
+        "Delivered 25+ websites with 100% client satisfaction",
+        "Improved average page load times by 50%",
+        "Achieved WCAG 2.1 AA compliance on all projects",
+        "Increased client conversion rates by 35% through UX improvements",
+        "Established frontend development best practices for the team"
+      ],
+      "technologies": ["JavaScript", "HTML5", "CSS3", "SASS", "jQuery", "WordPress", "PHP"]
+    }
+  ],
+  "education": [
+    {
+      "id": "edu1",
+      "institution": "University of California, Berkeley",
+      "degree": "Bachelor of Science in Computer Science",
+      "location": "Berkeley, CA",
+      "startDate": "2014-09-01",
+      "endDate": "2018-05-31",
+      "gpa": "3.8/4.0",
+      "honors": ["Magna Cum Laude", "Dean's List (6 semesters)", "Outstanding CS Student Award"],
+      "relevantCourses": [
+        "Data Structures and Algorithms",
+        "Software Engineering",
+        "Database Systems",
+        "Web Development",
+        "Machine Learning",
+        "Computer Networks",
+        "Human-Computer Interaction",
+        "Mobile Application Development"
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "id": "cert1",
+      "name": "AWS Certified Solutions Architect - Professional",
+      "issuer": "Amazon Web Services",
+      "date": "2023-08-15",
+      "expiryDate": "2026-08-15",
+      "credentialId": "AWS-SAP-123456789",
+      "verificationUrl": "https://aws.amazon.com/verification"
+    },
+    {
+      "id": "cert2",
+      "name": "Google Cloud Professional Developer",
+      "issuer": "Google Cloud",
+      "date": "2023-03-20",
+      "expiryDate": "2025-03-20",
+      "credentialId": "GCP-PD-987654321",
+      "verificationUrl": "https://cloud.google.com/certification"
+    },
+    {
+      "id": "cert3",
+      "name": "Certified Kubernetes Administrator (CKA)",
+      "issuer": "Cloud Native Computing Foundation",
+      "date": "2022-11-10",
+      "expiryDate": "2025-11-10",
+      "credentialId": "CKA-2022-123456",
+      "verificationUrl": "https://training.linuxfoundation.org/certification/verify"
+    }
+  ],
+  "awards": [
+    {
+      "id": "award1",
+      "title": "Innovation Excellence Award",
+      "issuer": "TechCorp Solutions",
+      "date": "2023-12-15",
+      "description": "Recognized for developing an AI-powered solution that increased team productivity by 40%"
+    },
+    {
+      "id": "award2",
+      "title": "Best Technical Presentation",
+      "issuer": "React Conference 2023",
+      "date": "2023-09-22",
+      "description": "Awarded for presentation on 'Building Scalable React Applications with Modern Patterns'"
+    },
+    {
+      "id": "award3",
+      "title": "Open Source Contributor of the Year",
+      "issuer": "JavaScript Community",
+      "date": "2022-12-31",
+      "description": "Recognized for significant contributions to popular open source JavaScript libraries"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "test1",
+      "name": "Sarah Chen",
+      "position": "CTO",
+      "company": "TechCorp Solutions",
+      "avatar": "/images/testimonials/sarah-chen.jpg",
+      "content": "Alex is an exceptional developer with outstanding problem-solving skills and leadership qualities. Their contributions have been invaluable to our team's success, and they consistently deliver high-quality solutions that exceed expectations.",
+      "rating": 5,
+      "date": "2023-11-15"
+    },
+    {
+      "id": "test2",
+      "name": "Michael Rodriguez",
+      "position": "Product Manager",
+      "company": "StartupHub Inc.",
+      "avatar": "/images/testimonials/michael-rodriguez.jpg",
+      "content": "Working with Alex was a pleasure. They're not only technically brilliant but also great at communicating complex ideas to non-technical stakeholders. Their work consistently improved our product metrics and user satisfaction.",
+      "rating": 5,
+      "date": "2023-08-10"
+    },
+    {
+      "id": "test3",
+      "name": "Emily Watson",
+      "position": "Senior Designer",
+      "company": "Digital Agency Pro",
+      "avatar": "/images/testimonials/emily-watson.jpg",
+      "content": "Alex has an incredible eye for detail and always ensures that the final product matches the design perfectly. They're also proactive in suggesting improvements that enhance both functionality and user experience.",
+      "rating": 5,
+      "date": "2023-06-05"
+    }
+  ],
+  "contact": {
+    "availability": "Available for freelance projects and full-time opportunities",
+    "preferredContact": "email",
+    "responseTime": "Within 24 hours",
+    "timezone": "PST (UTC-8)",
+    "workingHours": "9 AM - 6 PM PST",
+    "calendlyUrl": "https://calendly.com/alexjohnson",
+    "meetingTypes": [
+      "Project Consultation",
+      "Technical Discussion",
+      "Collaboration Opportunity",
+      "Mentoring Session",
+      "Speaking Engagement"
+    ]
+  },
+  "seo": {
+    "title": "Alex Johnson - Full Stack Developer Portfolio",
+    "description": "Professional portfolio of Alex Johnson, a passionate full-stack developer specializing in React, Node.js, and modern web technologies. Available for freelance projects and full-time opportunities.",
+    "keywords": [
+      "full stack developer",
+      "react developer",
+      "node.js developer",
+      "javascript developer",
+      "web developer",
+      "software engineer",
+      "alex johnson",
+      "portfolio",
+      "san francisco developer",
+      "freelance developer"
+    ],
+    "ogImage": "/images/og-alex-johnson.jpg",
+    "twitterCard": "summary_large_image",
+    "canonicalUrl": "https://alexjohnson.dev"
+  }
+}

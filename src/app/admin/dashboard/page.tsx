@@ -33,6 +33,7 @@ export default function AdminDashboard() {
   })
   const [recentActivity, setRecentActivity] = useState<ActivityItem[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const [isConfigured, setIsConfigured] = useState(true)
   const router = useRouter()
 
   useEffect(() => {
@@ -43,9 +44,28 @@ export default function AdminDashboard() {
       return
     }
 
+    // Check configuration
+    checkConfiguration()
+
     // Load dashboard data
     loadDashboardData()
   }, [router])
+
+  const checkConfiguration = async () => {
+    try {
+      const response = await fetch('/api/admin/setup/status')
+      if (response.ok) {
+        const data = await response.json()
+        if (!data.isConfigured) {
+          router.push('/admin/setup')
+          return
+        }
+        setIsConfigured(data.isConfigured)
+      }
+    } catch (error) {
+      console.error('Failed to check configuration:', error)
+    }
+  }
 
   const loadDashboardData = async () => {
     try {

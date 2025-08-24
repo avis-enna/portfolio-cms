@@ -1,0 +1,311 @@
+{
+  "featured": [
+    {
+      "id": "project1",
+      "title": "E-Commerce Platform",
+      "slug": "ecommerce-platform",
+      "shortDescription": "A modern, scalable e-commerce solution built with React and Node.js",
+      "longDescription": "A comprehensive e-commerce platform featuring real-time inventory management, secure payment processing, and an intuitive admin dashboard. Built with modern technologies and optimized for performance and scalability.",
+      "category": "Web Application",
+      "type": "Full Stack",
+      "status": "Completed",
+      "featured": true,
+      "startDate": "2023-06-01",
+      "endDate": "2023-09-30",
+      "duration": "4 months",
+      "teamSize": 3,
+      "role": "Lead Developer",
+      "client": "Retail Solutions Inc.",
+      "budget": "$50,000",
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "Stripe",
+        "AWS",
+        "Docker"
+      ],
+      "features": [
+        "User authentication and authorization",
+        "Product catalog with search and filtering",
+        "Shopping cart and checkout process",
+        "Payment integration with Stripe",
+        "Order management system",
+        "Admin dashboard with analytics",
+        "Real-time inventory tracking",
+        "Email notifications",
+        "Mobile-responsive design"
+      ],
+      "challenges": [
+        "Implementing real-time inventory synchronization",
+        "Optimizing database queries for large product catalogs",
+        "Ensuring PCI compliance for payment processing",
+        "Building a scalable architecture for high traffic"
+      ],
+      "solutions": [
+        "Used WebSocket connections for real-time updates",
+        "Implemented database indexing and query optimization",
+        "Integrated Stripe for secure payment processing",
+        "Deployed on AWS with auto-scaling capabilities"
+      ],
+      "results": [
+        "40% increase in conversion rates",
+        "99.9% uptime achieved",
+        "50% reduction in page load times",
+        "Positive user feedback and reviews"
+      ],
+      "images": [
+        "/images/projects/ecommerce/hero.jpg",
+        "/images/projects/ecommerce/dashboard.jpg",
+        "/images/projects/ecommerce/mobile.jpg",
+        "/images/projects/ecommerce/admin.jpg"
+      ],
+      "videos": [
+        "/videos/projects/ecommerce/demo.mp4"
+      ],
+      "links": {
+        "live": "https://ecommerce-demo.example.com",
+        "github": "https://github.com/yourusername/ecommerce-platform",
+        "case_study": "/case-studies/ecommerce-platform"
+      },
+      "tags": ["React", "E-commerce", "Full Stack", "AWS", "MongoDB"],
+      "metrics": {
+        "users": "10,000+",
+        "transactions": "$500,000+",
+        "performance": "98/100",
+        "uptime": "99.9%"
+      }
+    },
+    {
+      "id": "project2",
+      "title": "AI-Powered Analytics Dashboard",
+      "slug": "ai-analytics-dashboard",
+      "shortDescription": "An intelligent analytics platform with machine learning insights",
+      "longDescription": "A sophisticated analytics dashboard that leverages machine learning to provide actionable insights from complex datasets. Features real-time data processing, predictive analytics, and customizable visualizations.",
+      "category": "Data Analytics",
+      "type": "Full Stack + AI",
+      "status": "Completed",
+      "featured": true,
+      "startDate": "2023-01-15",
+      "endDate": "2023-05-30",
+      "duration": "4.5 months",
+      "teamSize": 4,
+      "role": "Full Stack Developer & ML Engineer",
+      "client": "Data Insights Corp.",
+      "budget": "$75,000",
+      "technologies": [
+        "Python",
+        "Django",
+        "React",
+        "D3.js",
+        "TensorFlow",
+        "PostgreSQL",
+        "Redis",
+        "Celery",
+        "Docker",
+        "Kubernetes"
+      ],
+      "features": [
+        "Real-time data ingestion and processing",
+        "Machine learning model integration",
+        "Interactive data visualizations",
+        "Predictive analytics and forecasting",
+        "Custom dashboard creation",
+        "Automated report generation",
+        "User role management",
+        "API for third-party integrations"
+      ],
+      "challenges": [
+        "Processing large volumes of real-time data",
+        "Integrating ML models with web application",
+        "Creating responsive and interactive visualizations",
+        "Ensuring data accuracy and consistency"
+      ],
+      "solutions": [
+        "Implemented streaming data pipeline with Apache Kafka",
+        "Used TensorFlow Serving for model deployment",
+        "Built custom D3.js components for visualizations",
+        "Implemented comprehensive data validation"
+      ],
+      "results": [
+        "60% improvement in decision-making speed",
+        "95% accuracy in predictive models",
+        "80% reduction in manual reporting time",
+        "Successful deployment across 5 departments"
+      ],
+      "images": [
+        "/images/projects/analytics/dashboard.jpg",
+        "/images/projects/analytics/charts.jpg",
+        "/images/projects/analytics/mobile.jpg",
+        "/images/projects/analytics/reports.jpg"
+      ],
+      "links": {
+        "live": "https://analytics-demo.example.com",
+        "github": "https://github.com/yourusername/ai-analytics",
+        "case_study": "/case-studies/ai-analytics-dashboard"
+      },
+      "tags": ["Python", "AI/ML", "Analytics", "React", "Data Science"],
+      "metrics": {
+        "data_points": "1M+ daily",
+        "accuracy": "95%",
+        "response_time": "<200ms",
+        "users": "500+"
+      }
+    },
+    {
+      "id": "project3",
+      "title": "Mobile Task Management App",
+      "slug": "mobile-task-app",
+      "shortDescription": "A cross-platform mobile app for team collaboration and task management",
+      "longDescription": "A feature-rich mobile application designed for team collaboration and productivity. Includes real-time synchronization, offline capabilities, and intuitive user interface for managing tasks and projects.",
+      "category": "Mobile Application",
+      "type": "Mobile Development",
+      "status": "Completed",
+      "featured": true,
+      "startDate": "2022-09-01",
+      "endDate": "2023-01-31",
+      "duration": "5 months",
+      "teamSize": 2,
+      "role": "Mobile Developer",
+      "client": "Productivity Solutions LLC",
+      "budget": "$40,000",
+      "technologies": [
+        "React Native",
+        "TypeScript",
+        "Firebase",
+        "Redux",
+        "Expo",
+        "Node.js",
+        "Express",
+        "MongoDB"
+      ],
+      "features": [
+        "Task creation and management",
+        "Team collaboration tools",
+        "Real-time synchronization",
+        "Offline functionality",
+        "Push notifications",
+        "File attachments",
+        "Time tracking",
+        "Progress analytics",
+        "Dark mode support"
+      ],
+      "challenges": [
+        "Implementing offline-first architecture",
+        "Ensuring smooth real-time synchronization",
+        "Optimizing performance for large datasets",
+        "Creating intuitive mobile UX"
+      ],
+      "solutions": [
+        "Used Redux Persist for offline data storage",
+        "Implemented WebSocket connections for real-time updates",
+        "Added pagination and lazy loading",
+        "Conducted extensive user testing and iteration"
+      ],
+      "results": [
+        "4.8/5 star rating on app stores",
+        "50,000+ downloads in first 6 months",
+        "30% increase in team productivity",
+        "Featured in 'Best Productivity Apps' list"
+      ],
+      "images": [
+        "/images/projects/mobile-app/home.jpg",
+        "/images/projects/mobile-app/tasks.jpg",
+        "/images/projects/mobile-app/team.jpg",
+        "/images/projects/mobile-app/analytics.jpg"
+      ],
+      "links": {
+        "ios": "https://apps.apple.com/app/task-manager",
+        "android": "https://play.google.com/store/apps/details?id=com.taskmanager",
+        "github": "https://github.com/yourusername/mobile-task-app"
+      },
+      "tags": ["React Native", "Mobile", "Firebase", "Team Collaboration"],
+      "metrics": {
+        "downloads": "50,000+",
+        "rating": "4.8/5",
+        "retention": "75%",
+        "active_users": "15,000+"
+      }
+    }
+  ],
+  "other": [
+    {
+      "id": "project4",
+      "title": "Personal Finance Tracker",
+      "slug": "finance-tracker",
+      "shortDescription": "A web application for tracking personal expenses and budgeting",
+      "longDescription": "A comprehensive personal finance management tool with expense tracking, budget planning, and financial goal setting capabilities.",
+      "category": "Web Application",
+      "type": "Full Stack",
+      "status": "Completed",
+      "featured": false,
+      "startDate": "2022-03-01",
+      "endDate": "2022-06-30",
+      "duration": "4 months",
+      "teamSize": 1,
+      "role": "Solo Developer",
+      "client": "Personal Project",
+      "technologies": ["Vue.js", "Node.js", "MySQL", "Chart.js"],
+      "images": ["/images/projects/finance/dashboard.jpg"],
+      "links": {
+        "live": "https://finance-tracker.example.com",
+        "github": "https://github.com/yourusername/finance-tracker"
+      },
+      "tags": ["Vue.js", "Finance", "Personal Project"]
+    },
+    {
+      "id": "project5",
+      "title": "Weather Forecast API",
+      "slug": "weather-api",
+      "shortDescription": "A RESTful API service providing accurate weather forecasts",
+      "longDescription": "A robust weather API service that aggregates data from multiple sources to provide accurate and reliable weather forecasts with global coverage.",
+      "category": "API Development",
+      "type": "Backend",
+      "status": "Completed",
+      "featured": false,
+      "startDate": "2021-11-01",
+      "endDate": "2022-02-28",
+      "duration": "4 months",
+      "teamSize": 2,
+      "role": "Backend Developer",
+      "client": "Weather Solutions Inc.",
+      "technologies": ["Python", "FastAPI", "PostgreSQL", "Redis", "Docker"],
+      "images": ["/images/projects/weather-api/documentation.jpg"],
+      "links": {
+        "api": "https://weather-api.example.com",
+        "docs": "https://weather-api.example.com/docs",
+        "github": "https://github.com/yourusername/weather-api"
+      },
+      "tags": ["Python", "API", "Weather", "FastAPI"]
+    }
+  ],
+  "categories": [
+    "Web Application",
+    "Mobile Application",
+    "API Development",
+    "Data Analytics",
+    "Machine Learning",
+    "E-commerce",
+    "Productivity Tools"
+  ],
+  "technologies": [
+    "React",
+    "Vue.js",
+    "Angular",
+    "Node.js",
+    "Python",
+    "TypeScript",
+    "JavaScript",
+    "React Native",
+    "Flutter",
+    "MongoDB",
+    "PostgreSQL",
+    "MySQL",
+    "Redis",
+    "AWS",
+    "Docker",
+    "Kubernetes"
+  ]
+}

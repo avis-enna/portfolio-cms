@@ -1,0 +1,195 @@
+{
+  "personal": {
+    "name": "Your Name",
+    "title": "Full Stack Developer",
+    "tagline": "Building amazing digital experiences",
+    "bio": "I'm a passionate full-stack developer with expertise in modern web technologies. I love creating innovative solutions that make a difference.",
+    "location": "Your City, Country",
+    "timezone": "America/New_York",
+    "languages": ["English", "Spanish"],
+    "email": "your.email@example.com",
+    "phone": "+1 (555) 123-4567",
+    "website": "https://yourportfolio.com",
+    "avatar": "/images/avatar.jpg",
+    "resume": "/files/resume.pdf"
+  },
+  "social": {
+    "github": "https://github.com/yourusername",
+    "linkedin": "https://linkedin.com/in/yourusername",
+    "twitter": "https://twitter.com/yourusername",
+    "instagram": "https://instagram.com/yourusername",
+    "youtube": "https://youtube.com/@yourusername",
+    "dribbble": "https://dribbble.com/yourusername",
+    "behance": "https://behance.net/yourusername",
+    "medium": "https://medium.com/@yourusername",
+    "dev": "https://dev.to/yourusername",
+    "stackoverflow": "https://stackoverflow.com/users/yourid",
+    "codepen": "https://codepen.io/yourusername",
+    "discord": "yourusername#1234"
+  },
+  "about": {
+    "shortDescription": "Passionate developer creating innovative web solutions",
+    "longDescription": "I'm a dedicated full-stack developer with over 5 years of experience in creating robust, scalable web applications. My passion lies in solving complex problems and building user-centric solutions that make a real impact.",
+    "interests": [
+      "Web Development",
+      "Machine Learning",
+      "Open Source",
+      "Photography",
+      "Travel",
+      "Music"
+    ],
+    "values": [
+      "Innovation",
+      "Quality",
+      "Collaboration",
+      "Continuous Learning"
+    ],
+    "funFacts": [
+      "I've contributed to 50+ open source projects",
+      "I speak 3 languages fluently",
+      "I've traveled to 25 countries",
+      "I can solve a Rubik's cube in under 2 minutes"
+    ]
+  },
+  "experience": [
+    {
+      "id": "exp1",
+      "company": "Tech Company Inc.",
+      "position": "Senior Full Stack Developer",
+      "location": "San Francisco, CA",
+      "type": "Full-time",
+      "startDate": "2022-01-01",
+      "endDate": null,
+      "current": true,
+      "description": "Lead development of scalable web applications using React, Node.js, and cloud technologies.",
+      "achievements": [
+        "Improved application performance by 40%",
+        "Led a team of 5 developers",
+        "Implemented CI/CD pipelines reducing deployment time by 60%"
+      ],
+      "technologies": ["React", "Node.js", "TypeScript", "AWS", "Docker"]
+    },
+    {
+      "id": "exp2",
+      "company": "Startup Solutions",
+      "position": "Full Stack Developer",
+      "location": "Remote",
+      "type": "Full-time",
+      "startDate": "2020-06-01",
+      "endDate": "2021-12-31",
+      "current": false,
+      "description": "Developed and maintained multiple client projects using modern web technologies.",
+      "achievements": [
+        "Built 10+ client applications from scratch",
+        "Reduced bug reports by 50% through comprehensive testing",
+        "Mentored 3 junior developers"
+      ],
+      "technologies": ["Vue.js", "Python", "Django", "PostgreSQL", "Redis"]
+    }
+  ],
+  "education": [
+    {
+      "id": "edu1",
+      "institution": "University of Technology",
+      "degree": "Bachelor of Science in Computer Science",
+      "location": "Your City, Country",
+      "startDate": "2016-09-01",
+      "endDate": "2020-05-31",
+      "gpa": "3.8/4.0",
+      "honors": ["Magna Cum Laude", "Dean's List"],
+      "relevantCourses": [
+        "Data Structures and Algorithms",
+        "Software Engineering",
+        "Database Systems",
+        "Web Development",
+        "Machine Learning"
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "id": "cert1",
+      "name": "AWS Certified Solutions Architect",
+      "issuer": "Amazon Web Services",
+      "date": "2023-03-15",
+      "expiryDate": "2026-03-15",
+      "credentialId": "AWS-SAA-123456",
+      "verificationUrl": "https://aws.amazon.com/verification"
+    },
+    {
+      "id": "cert2",
+      "name": "Google Cloud Professional Developer",
+      "issuer": "Google Cloud",
+      "date": "2022-11-20",
+      "expiryDate": "2024-11-20",
+      "credentialId": "GCP-PD-789012",
+      "verificationUrl": "https://cloud.google.com/certification"
+    }
+  ],
+  "awards": [
+    {
+      "id": "award1",
+      "title": "Best Innovation Award",
+      "issuer": "Tech Conference 2023",
+      "date": "2023-09-15",
+      "description": "Recognized for developing an innovative AI-powered solution"
+    },
+    {
+      "id": "award2",
+      "title": "Employee of the Year",
+      "issuer": "Tech Company Inc.",
+      "date": "2023-12-31",
+      "description": "Outstanding performance and leadership in software development"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "test1",
+      "name": "John Smith",
+      "position": "CTO",
+      "company": "Tech Company Inc.",
+      "avatar": "/images/testimonials/john-smith.jpg",
+      "content": "An exceptional developer with outstanding problem-solving skills. Their contributions have been invaluable to our team.",
+      "rating": 5,
+      "date": "2023-10-15"
+    },
+    {
+      "id": "test2",
+      "name": "Sarah Johnson",
+      "position": "Product Manager",
+      "company": "Startup Solutions",
+      "avatar": "/images/testimonials/sarah-johnson.jpg",
+      "content": "Reliable, creative, and always delivers high-quality work. A pleasure to work with!",
+      "rating": 5,
+      "date": "2023-08-22"
+    }
+  ],
+  "contact": {
+    "availability": "Available for freelance projects",
+    "preferredContact": "email",
+    "responseTime": "Within 24 hours",
+    "timezone": "EST (UTC-5)",
+    "workingHours": "9 AM - 6 PM EST",
+    "calendlyUrl": "https://calendly.com/yourusername",
+    "meetingTypes": [
+      "Project Consultation",
+      "Technical Discussion",
+      "Collaboration Opportunity"
+    ]
+  },
+  "seo": {
+    "title": "Your Name - Full Stack Developer Portfolio",
+    "description": "Professional portfolio of Your Name, a passionate full-stack developer specializing in modern web technologies and innovative solutions.",
+    "keywords": [
+      "full stack developer",
+      "web developer",
+      "react developer",
+      "node.js developer",
+      "portfolio",
+      "your name"
+    ],
+    "ogImage": "/images/og-image.jpg",
+    "twitterCard": "summary_large_image",
+    "canonicalUrl": "https://yourportfolio.com"
+  }
+}

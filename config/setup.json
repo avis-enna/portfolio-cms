@@ -1,0 +1,114 @@
+{
+  "setup": {
+    "isConfigured": false,
+    "version": "1.0.0",
+    "setupDate": null,
+    "lastModified": null,
+    "configuredBy": null
+  },
+  "deployment": {
+    "platform": "vercel",
+    "domain": null,
+    "customDomain": null,
+    "environment": "development",
+    "deploymentUrl": null
+  },
+  "features": {
+    "ai": {
+      "enabled": true,
+      "provider": "openai",
+      "model": "gpt-3.5-turbo",
+      "maxTokens": 500,
+      "temperature": 0.7
+    },
+    "analytics": {
+      "enabled": true,
+      "provider": "internal",
+      "trackingId": null,
+      "enableRealTime": true,
+      "enablePerformance": true
+    },
+    "pwa": {
+      "enabled": true,
+      "enableOffline": true,
+      "enableNotifications": true,
+      "enableInstallPrompt": true
+    },
+    "blog": {
+      "enabled": true,
+      "enableComments": false,
+      "enableSearch": true,
+      "postsPerPage": 10
+    },
+    "contact": {
+      "enabled": true,
+      "enableForm": true,
+      "enableCalendly": false,
+      "enableChat": false
+    },
+    "social": {
+      "enableSharing": true,
+      "enableLinkedInIntegration": false,
+      "enableTwitterIntegration": false
+    }
+  },
+  "theme": {
+    "name": "default",
+    "mode": "system",
+    "primaryColor": "#2563eb",
+    "secondaryColor": "#64748b",
+    "accentColor": "#f59e0b",
+    "backgroundColor": "#ffffff",
+    "textColor": "#1f2937",
+    "fontFamily": "Inter",
+    "borderRadius": "0.5rem",
+    "animations": true
+  },
+  "layout": {
+    "header": {
+      "style": "modern",
+      "showLogo": true,
+      "showNavigation": true,
+      "sticky": true
+    },
+    "hero": {
+      "style": "gradient",
+      "showAvatar": true,
+      "showSocial": true,
+      "showCTA": true
+    },
+    "sections": {
+      "about": { "enabled": true, "order": 1 },
+      "experience": { "enabled": true, "order": 2 },
+      "projects": { "enabled": true, "order": 3 },
+      "skills": { "enabled": true, "order": 4 },
+      "blog": { "enabled": true, "order": 5 },
+      "testimonials": { "enabled": true, "order": 6 },
+      "contact": { "enabled": true, "order": 7 }
+    },
+    "footer": {
+      "showSocial": true,
+      "showCopyright": true,
+      "showBackToTop": true
+    }
+  },
+  "seo": {
+    "enableSitemap": true,
+    "enableRobots": true,
+    "enableStructuredData": true,
+    "enableOpenGraph": true,
+    "enableTwitterCards": true
+  },
+  "performance": {
+    "enableImageOptimization": true,
+    "enableLazyLoading": true,
+    "enableCompression": true,
+    "enableCaching": true
+  },
+  "security": {
+    "enableCSP": true,
+    "enableCORS": true,
+    "enableRateLimit": true,
+    "enableInputValidation": true
+  }
+}
