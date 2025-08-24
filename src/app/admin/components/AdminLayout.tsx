@@ -12,16 +12,28 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [userInfo, setUserInfo] = useState({ username: 'admin', email: 'admin@test.com' })
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
+  const [isRedirecting, setIsRedirecting] = useState(false)
   const router = useRouter()
   const pathname = usePathname()
 
   useEffect(() => {
-    // Check authentication
-    const accessToken = localStorage.getItem('accessToken')
-    if (!accessToken) {
-      router.push('/admin/login')
+    // Check authentication with protection against multiple redirects
+    if (isRedirecting) return
+
+    const checkAuth = async () => {
+      const accessToken = localStorage.getItem('accessToken')
+      if (!accessToken) {
+        console.log('AdminLayout: No access token found, redirecting to login')
+        setIsRedirecting(true)
+        // Add delay to prevent rapid redirects
+        setTimeout(() => {
+          router.push('/admin/login')
+        }, 500)
+      }
     }
-  }, [router])
+
+    checkAuth()
+  }, [router, isRedirecting])
 
   const handleLogout = async () => {
     try {
